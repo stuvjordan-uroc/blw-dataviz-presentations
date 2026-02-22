@@ -1,15 +1,5 @@
 /* Common styles and utilities for all presentations */
 
-/* Layout utilities */
-.slide-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-
 /* Utility classes */
 .text-center {
   text-align: center !important;

@@ -4,7 +4,7 @@
   --brand-dark: #2D2E35;
   --brand-lavender: #979BC4;
   --brand-light: #F3F4F7;
-  
+
   /* Gray scale (darkest to lightest) */
   --gray-900: #1F2026;
   --gray-800: #2D2E35;
@@ -16,7 +16,7 @@
   --gray-200: #D3D5E3;
   --gray-100: #E9EAF1;
   --gray-50: #F6F7F9;
-  
+
   /* Semantic color mappings */
   --color-text-primary: var(--gray-800);
   --color-text-secondary: var(--gray-600);
