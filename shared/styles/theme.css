@@ -1,16 +1,19 @@
 /* Import typography (Jost font) */
 @import url('./typography.css');
 
+/* Import brand colors and gray scale */
+@import url('./colors.css');
+
 /* RevealJS Theme Customization */
 :root {
   --r-background-color: #ffffff;
   --r-main-font: 'Jost', Helvetica, sans-serif;
   --r-main-font-size: 40px;
-  --r-main-color: #222;
+  --r-main-color: var(--gray-800);
   --r-block-margin: 20px;
   --r-heading-margin: 0 0 20px 0;
   --r-heading-font: 'Jost', Helvetica, sans-serif;
-  --r-heading-color: #222;
+  --r-heading-color: var(--gray-800);
   --r-heading-line-height: 1.2;
   --r-heading-letter-spacing: normal;
   --r-heading-text-transform: none;
@@ -22,9 +25,9 @@
   --r-heading3-size: 1.3em;
   --r-heading4-size: 1em;
   --r-code-font: monospace;
-  --r-link-color: #2a76dd;
-  --r-link-color-hover: #6ca0e8;
-  --r-selection-background-color: #98bdef;
+  --r-link-color: var(--brand-lavender);
+  --r-link-color-hover: #B8BCDB;
+  --r-selection-background-color: var(--brand-lavender);
   --r-selection-color: #fff;
 }
 

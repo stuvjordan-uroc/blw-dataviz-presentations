@@ -1,0 +1,28 @@
+/* Brand Colors from Logo */
+:root {
+  /* Brand colors */
+  --brand-dark: #2D2E35;
+  --brand-lavender: #979BC4;
+  --brand-light: #F3F4F7;
+  
+  /* Gray scale (darkest to lightest) */
+  --gray-900: #1F2026;
+  --gray-800: #2D2E35;
+  --gray-700: #3E4150;
+  --gray-600: #51546A;
+  --gray-500: #6B6F89;
+  --gray-400: #8E92A8;
+  --gray-300: #B1B4C7;
+  --gray-200: #D3D5E3;
+  --gray-100: #E9EAF1;
+  --gray-50: #F6F7F9;
+  
+  /* Semantic color mappings */
+  --color-text-primary: var(--gray-800);
+  --color-text-secondary: var(--gray-600);
+  --color-text-muted: var(--gray-500);
+  --color-background: #ffffff;
+  --color-background-subtle: var(--gray-50);
+  --color-border: var(--gray-200);
+  --color-accent: var(--brand-lavender);
+}
