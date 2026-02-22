@@ -1,0 +1,18 @@
+import { defineConfig } from 'vite';
+import { resolve } from 'path';
+
+export default defineConfig({
+  base: './',
+  build: {
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        'slides/pres-20260225-harley': resolve(__dirname, 'slides/pres-20260225-harley/index.html'),
+        // Add new presentations here as you create them
+      },
+    },
+  },
+  server: {
+    open: true,
+  },
+});

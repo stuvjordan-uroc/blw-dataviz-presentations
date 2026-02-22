@@ -1,0 +1,83 @@
+/* Common styles and utilities for all presentations */
+
+/* Utility classes */
+.text-center {
+  text-align: center !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+/* Highlight boxes */
+.highlight-box {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.highlight-box.info {
+  background-color: #e3f2fd;
+  border-left: 4px solid #2196f3;
+}
+
+.highlight-box.warning {
+  background-color: #fff3e0;
+  border-left: 4px solid #ff9800;
+}
+
+.highlight-box.success {
+  background-color: #e8f5e9;
+  border-left: 4px solid #4caf50;
+}
+
+/* Code blocks */
+.reveal pre {
+  width: 100%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.reveal code {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Fragment animations */
+.reveal .fragment.fade-in-then-semi-out.visible {
+  opacity: 1;
+  visibility: inherit;
+}
+
+.reveal .fragment.fade-in-then-semi-out.current-fragment {
+  opacity: 1;
+}
+
+.reveal .fragment.fade-in-then-semi-out.visible:not(.current-fragment) {
+  opacity: 0.5;
+}
+
+/* Two-column layout */
+.two-columns {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.two-columns>* {
+  flex: 1;
+}
+
+/* Image utilities */
+.reveal img.no-border {
+  border: none;
+  box-shadow: none;
+  background: none;
+}
+
+.reveal img.shadow {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}

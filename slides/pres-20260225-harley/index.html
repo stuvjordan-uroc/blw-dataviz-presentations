@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+
+  <!-- RevealJS core CSS -->
+  <link rel="stylesheet" href="../../node_modules/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="../../node_modules/reveal.js/dist/theme/white.css" id="theme">
+
+  <!-- Shared custom styles -->
+  <link rel="stylesheet" href="../../shared/styles/theme.css">
+  <link rel="stylesheet" href="../../shared/styles/common.css">
+
+  <!-- Presentation-specific styles -->
+  <style>
+    /* Add any presentation-specific styles here */
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Title Slide -->
+      <section>
+        <img src="/assets/img/logo_dem_center.webp" alt="Logo" class="no-border">
+      </section>
+
+      <!-- Example Content Slide -->
+      <section>
+        <h2>Welcome</h2>
+        <p>This is a sample slide in your presentation.</p>
+        <ul>
+          <li class="fragment">Point one</li>
+          <li class="fragment">Point two</li>
+          <li class="fragment">Point three</li>
+        </ul>
+      </section>
+
+      <!-- Example Two-Column Layout -->
+      <section>
+        <h2>Two Column Example</h2>
+        <div class="two-columns">
+          <div>
+            <h3>Left Side</h3>
+            <p>Content for the left column.</p>
+          </div>
+          <div>
+            <h3>Right Side</h3>
+            <p>Content for the right column.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Example Highlight Box -->
+      <section>
+        <h2>Highlight Boxes</h2>
+        <div class="highlight-box info">
+          <strong>Info:</strong> This is an informational highlight box.
+        </div>
+        <div class="highlight-box warning">
+          <strong>Warning:</strong> This is a warning highlight box.
+        </div>
+      </section>
+
+      <!-- Example Code Slide -->
+      <section>
+        <h2>Code Example</h2>
+        <pre><code data-trim data-noescape>
+function hello() {
+  console.log("Hello from RevealJS!");
+  return "Welcome to your presentation";
+}
+        </code></pre>
+      </section>
+
+      <!-- Closing Slide -->
+      <section>
+        <h2>Thank You!</h2>
+        <p>Questions?</p>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- RevealJS scripts -->
+  <script type="module">
+    import Reveal from '../../node_modules/reveal.js/dist/reveal.esm.js';
+    import RevealHighlight from '../../node_modules/reveal.js/plugin/highlight/highlight.esm.js';
+    import RevealNotes from '../../node_modules/reveal.js/plugin/notes/notes.esm.js';
+
+    // Initialize RevealJS
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      transition: 'slide',
+      plugins: [RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>
