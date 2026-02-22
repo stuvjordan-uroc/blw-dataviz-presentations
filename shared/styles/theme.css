@@ -1,18 +1,21 @@
+/* Import typography (Jost font) */
+@import url('./typography.css');
+
 /* RevealJS Theme Customization */
 :root {
   --r-background-color: #ffffff;
-  --r-main-font: 'Source Sans Pro', Helvetica, sans-serif;
+  --r-main-font: 'Jost', Helvetica, sans-serif;
   --r-main-font-size: 40px;
   --r-main-color: #222;
   --r-block-margin: 20px;
   --r-heading-margin: 0 0 20px 0;
-  --r-heading-font: 'Source Sans Pro', Helvetica, sans-serif;
+  --r-heading-font: 'Jost', Helvetica, sans-serif;
   --r-heading-color: #222;
   --r-heading-line-height: 1.2;
   --r-heading-letter-spacing: normal;
   --r-heading-text-transform: none;
   --r-heading-text-shadow: none;
-  --r-heading-font-weight: 600;
+  --r-heading-font-weight: 700;
   --r-heading1-text-shadow: none;
   --r-heading1-size: 2.5em;
   --r-heading2-size: 1.6em;
