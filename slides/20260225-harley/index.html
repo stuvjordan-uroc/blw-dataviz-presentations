@@ -29,6 +29,16 @@
         <img src="/assets/img/logo_dem_center.webp" width="2000px" alt="Logo" class="no-border">
       </section>
 
+      <!-- You as an expert-->
+      <section data-background-color="#2D2E35">
+        <h3>Expert on democracy have:</h3>
+        <ul style="list-style: none; padding-left: 0px;">
+          <li>A wierd definition of democracy;</li>
+          <li style="margin-top: 0.5em;">Crazy ideas about politicians;</li>
+          <li style="margin-top: 0.5em;">Odd questions for voters.</li>
+        </ul>
+      </section>
+
       <!-- Democracy is not equal to voting-->
       <section data-background-color="#2D2E35">
         <h2>
@@ -38,15 +48,142 @@
 
       <!-- Why Politicians Hate Democracy -->
       <section data-background-color="#2D2E35" style="text-align: left;">
-        <strong>Democracy:</strong> A political system in which the likelihood that a government officeholder keeps
-        her job depends on whether a majority of the persons she governs approve of her performance.
+        <strong>Democracy:</strong> A political system is democratic to the extent that powerful government
+        officeholders lose their jobs when most of the persons they govern disapprove of their work.
+      </section>
+
+      <!-- Visualization of Democratic-ness-->
+      <section data-background-color="#2D2E35">
+        <div style="position: relative; width: 100%; height: 600px;">
+          <!-- Base SVG - Always visible -->
+          <svg class="fragment" data-fragment-index="0"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" viewBox="0 0 1000 600"
+            xmlns="http://www.w3.org/2000/svg">
+            <!-- Axes -->
+            <line x1="150" y1="500" x2="850" y2="500" stroke="var(--gray-200)" stroke-width="2" />
+            <line x1="150" y1="500" x2="150" y2="50" stroke="var(--gray-200)" stroke-width="2" />
+
+            <!-- Horizontal axis label -->
+            <foreignObject x="150" y="520" width="700" height="80">
+              <div xmlns="http://www.w3.org/1999/xhtml"
+                style="color: var(--gray-200); text-align: center; font-size: 36px; white-space: nowrap;"
+                class="handwritten">
+                % of persons who disapprove of officeholder's work
+              </div>
+            </foreignObject>
+
+            <!-- Vertical axis label (rotated) -->
+            <foreignObject x="80" y="25" width="60" height="500">
+              <div xmlns="http://www.w3.org/1999/xhtml" style="color: var(--gray-200); text-align: center; font-size: 36px; 
+                          white-space: nowrap; overflow: visible;
+                          transform: rotate(-90deg); transform-origin: center center;
+                          width: 500px; height: 60px; margin-left: -220px; margin-top: 220px;" class="handwritten">
+                likelihood that officeholder loses his job
+              </div>
+            </foreignObject>
+          </svg>
+
+          <!-- Overlay SVG 1 - Fade in then out -->
+          <svg class="fragment fade-in-then-out" data-fragment-index="1"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" viewBox="0 0 1000 600"
+            xmlns="http://www.w3.org/2000/svg">
+            <!-- Axes -->
+            <line x1="150" y1="500" x2="850" y2="500" stroke="var(--gray-200)" stroke-width="2" />
+            <line x1="150" y1="500" x2="150" y2="50" stroke="var(--gray-200)" stroke-width="2" />
+
+            <!-- Horizontal axis label -->
+            <foreignObject x="150" y="520" width="700" height="80">
+              <div xmlns="http://www.w3.org/1999/xhtml"
+                style="color: var(--gray-200); text-align: center; font-size: 36px; white-space: nowrap;"
+                class="handwritten">
+                % of persons who disapprove of officeholder's work
+              </div>
+            </foreignObject>
+
+            <!-- Vertical axis label (rotated) -->
+            <foreignObject x="80" y="25" width="60" height="500">
+              <div xmlns="http://www.w3.org/1999/xhtml" style="color: var(--gray-200); text-align: center; font-size: 36px; 
+                          white-space: nowrap; overflow: visible;
+                          transform: rotate(-90deg); transform-origin: center center;
+                          width: 500px; height: 60px; margin-left: -220px; margin-top: 220px;" class="handwritten">
+                likelihood that officeholder loses his job
+              </div>
+            </foreignObject>
+
+            <!-- Red line with shallow positive slope -->
+            <line x1="150" y1="387.5" x2="850" y2="325" stroke="#E74C3C" stroke-width="4" />
+          </svg>
+
+          <!-- Label for overlay 1 - absolutely positioned -->
+          <div class="fragment fade-in handwritten" data-fragment-index="1"
+            style="position: absolute; left: 78%; top: 54%; color: #E74C3C; font-size: 36px; white-space: nowrap;">
+            not very democratic 😞
+          </div>
+
+          <!-- Final SVG - Fade in and stay -->
+          <svg class="fragment fade-in" data-fragment-index="2"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" viewBox="0 0 1000 600"
+            xmlns="http://www.w3.org/2000/svg">
+            <!-- Axes -->
+            <line x1="150" y1="500" x2="850" y2="500" stroke="var(--gray-200)" stroke-width="2" />
+            <line x1="150" y1="500" x2="150" y2="50" stroke="var(--gray-200)" stroke-width="2" />
+
+            <!-- Horizontal axis label -->
+            <foreignObject x="150" y="520" width="700" height="80">
+              <div xmlns="http://www.w3.org/1999/xhtml"
+                style="color: var(--gray-200); text-align: center; font-size: 36px; white-space: nowrap;"
+                class="handwritten">
+                % of persons who disapprove of officeholder's work
+              </div>
+            </foreignObject>
+
+            <!-- Vertical axis label (rotated) -->
+            <foreignObject x="80" y="25" width="60" height="500">
+              <div xmlns="http://www.w3.org/1999/xhtml" style="color: var(--gray-200); text-align: center; font-size: 36px; 
+                          white-space: nowrap; overflow: visible;
+                          transform: rotate(-90deg); transform-origin: center center;
+                          width: 500px; height: 60px; margin-left: -220px; margin-top: 220px;" class="handwritten">
+                likelihood that officeholder loses his job
+              </div>
+            </foreignObject>
+
+            <!-- Red line with shallow positive slope -->
+            <line x1="150" y1="387.5" x2="850" y2="325" stroke="#E74C3C" stroke-width="4" />
+
+            <!-- Green line with steeper positive slope - intersects red line at 50% -->
+            <line x1="150" y1="426.25" x2="850" y2="286.25" stroke="#27AE60" stroke-width="4" />
+          </svg>
+
+          <!-- Label for overlay 2 - green line -->
+          <div class="fragment fade-in handwritten" data-fragment-index="2"
+            style="position: absolute; left: 78%; top: 40%; color: #27AE60; font-size: 36px; white-space: nowrap;">
+            more democratic 😊
+          </div>
+        </div>
+      </section>
+
+      <!-- You as an expert -- step 1 done-->
+      <section data-background-color="#2D2E35">
+        <h3>Expert on democracy have:</h3>
+        <ul style="list-style: none; padding-left: 0px;">
+          <li style="position: relative;">
+            <span style="position: absolute; left: -1.2em; color: #27AE60; font-size: 1.2em;">✓</span>
+            A wierd definition of democracy;
+          </li>
+          <li style="margin-top: 0.5em;">Crazy ideas about politicians;</li>
+          <li style="margin-top: 0.5em;">Odd questions for voters.</li>
+        </ul>
+      </section>
+
+      <!-- Do politicians like democracy?-->
+      <section data-background-color="#2D2E35" style="text-align: left;">
+        <h2>Do politicians like democracy?</h2>
       </section>
 
 
-      <!-- Elected Politicians Hate Democracy-->
+      <!-- Politicians will weakend democracy whenever they can get away with it-->
       <section data-background-color="#2D2E35" style="text-align: left;">
-        <h2>Elected politicians hate democracy.</h2>
-        <h2 style="margin-top: 2em;">Every free, fair, and competitive election should be the last.</h2>
+        <strong>Crazy idea:</strong> Politicians will weaken democracy whenever they can get away with it.
       </section>
 
 
