@@ -7,7 +7,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        'slides/pres-20260225-harley': resolve(__dirname, 'slides/pres-20260225-harley/index.html'),
+        'slides/20260225-harley': resolve(__dirname, 'slides/20260225-harley/index.html'),
         // Add new presentations here as you create them
       },
     },
