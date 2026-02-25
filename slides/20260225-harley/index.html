@@ -16,7 +16,10 @@
 
   <!-- Presentation-specific styles -->
   <style>
-    /* Add any presentation-specific styles here */
+    /* Utility class for lists with spacing between items */
+    ul.spaced-list>li:not(:last-child) {
+      margin-bottom: 0.75em;
+    }
   </style>
 </head>
 
@@ -33,23 +36,61 @@
       <section data-background-color="#2D2E35" style="text-align: left;">
         <h3>Steps:</h3>
         <ul style="list-style: none; padding-left: 0px;">
-          <li>You learn a weird definition of democracy.</li>
+          <li>You learn a powerful definition of democracy.</li>
           <li style="margin-top: 0.5em;">You learn how to flatten a line.</li>
           <li style="margin-top: 0.5em;">You solve my cat problem.</li>
+          <li style="margin-top: 0.5em;">You ask the right questions.</li>
         </ul>
       </section>
 
       <!-- is Democracy equal to voting?-->
       <section data-background-color="#2D2E35">
-        <h2>
-          Democracy = elections?
-        </h2>
+        <div
+          style="position: relative; width: 960px; height: 700px; display: flex; align-items: center; justify-content: center;">
+          <h2>
+            Democracy = elections?
+          </h2>
+          <div class="fragment" style="position: absolute; top: 0.5em; right: 0.5em; font-size: 1.8em;">87%</div>
+        </div>
       </section>
 
       <!-- Weird definition of democracy -->
       <section data-background-color="#2D2E35" style="text-align: left;">
-        <strong>Democracy:</strong> A political system is democratic to the extent that powerful government
-        officeholders lose their jobs when most of the persons they govern disapprove of their work.
+        <div style="position: relative">
+          <div class="fragment fade-in-then-out">
+            <strong>Democracy:</strong> A political system is democratic to the
+            extent that the likelihood that powerful
+            government
+            officeholders lose their jobs increases as more of persons they govern disapprove of their behavior in
+            office.
+          </div>
+          <div class="fragment fade-in-then-out" style="position: absolute; top: 0; left: 0; color: var(--gray-300)">
+            <strong>Democracy:</strong> A political system is democratic <span style="color: yellow;">to the
+              extent</span> that the likelihood that powerful
+            government
+            officeholders lose their jobs increases as more of persons they govern disapprove of their behavior in
+            office.
+          </div>
+          <div class="fragment fade-in-then-out" style="position: absolute; top: 0; left: 0; color: var(--gray-300)">
+            <strong>Democracy:</strong> A political system is democratic <span style="color: yellow;">to the
+              extent</span> that the likelihood that powerful
+            government
+            <span style="color: #0ffc03">officeholders lose their jobs</span> increases as more of persons they govern
+            disapprove of their behavior in
+            office.
+          </div>
+          <div class="fragment fade-in-then-out" style="position: absolute; top: 0; left: 0; color: var(--gray-300)">
+            <strong>Democracy:</strong> A political system is democratic <span style="color: yellow;">to the
+              extent</span> that the likelihood that powerful
+            government
+            <span style="color: #0ffc03">officeholders lose their jobs</span> increases as more of <span
+              style="color: #fc03fc">
+              persons they govern
+              disapprove
+            </span> of their behavior in
+            office.
+          </div>
+        </div>
       </section>
 
       <!-- Visualization of Democratic-ness-->
@@ -66,19 +107,18 @@
             <!-- Horizontal axis label -->
             <foreignObject x="150" y="520" width="700" height="80">
               <div xmlns="http://www.w3.org/1999/xhtml"
-                style="color: var(--gray-200); text-align: center; font-size: 36px; white-space: nowrap;"
-                class="handwritten">
-                % of persons who disapprove of officeholder's work
+                style="color: var(--gray-200); text-align: center; font-size: 0.72em; white-space: nowrap;">
+                % of persons who disapprove of officeholder's behavior
               </div>
             </foreignObject>
 
             <!-- Vertical axis label (rotated) -->
             <foreignObject x="80" y="25" width="60" height="500">
-              <div xmlns="http://www.w3.org/1999/xhtml" style="color: var(--gray-200); text-align: center; font-size: 36px; 
+              <div xmlns="http://www.w3.org/1999/xhtml" style="color: var(--gray-200); text-align: center; font-size: 0.72em; 
                           white-space: nowrap; overflow: visible;
                           transform: rotate(-90deg); transform-origin: center center;
-                          width: 500px; height: 60px; margin-left: -220px; margin-top: 220px;" class="handwritten">
-                likelihood that officeholder loses his job
+                          width: 500px; height: 60px; margin-left: -220px; margin-top: 220px;">
+                likelihood officeholder loses his job
               </div>
             </foreignObject>
           </svg>
@@ -94,19 +134,18 @@
             <!-- Horizontal axis label -->
             <foreignObject x="150" y="520" width="700" height="80">
               <div xmlns="http://www.w3.org/1999/xhtml"
-                style="color: var(--gray-200); text-align: center; font-size: 36px; white-space: nowrap;"
-                class="handwritten">
-                % of persons who disapprove of officeholder's work
+                style="color: var(--gray-200); text-align: center; font-size: 0.72em; white-space: nowrap;">
+                % of persons who disapprove of officeholder's behavior
               </div>
             </foreignObject>
 
             <!-- Vertical axis label (rotated) -->
             <foreignObject x="80" y="25" width="60" height="500">
-              <div xmlns="http://www.w3.org/1999/xhtml" style="color: var(--gray-200); text-align: center; font-size: 36px; 
+              <div xmlns="http://www.w3.org/1999/xhtml" style="color: var(--gray-200); text-align: center; font-size: 0.72em; 
                           white-space: nowrap; overflow: visible;
                           transform: rotate(-90deg); transform-origin: center center;
-                          width: 500px; height: 60px; margin-left: -220px; margin-top: 220px;" class="handwritten">
-                likelihood that officeholder loses his job
+                          width: 500px; height: 60px; margin-left: -220px; margin-top: 220px;">
+                likelihood officeholder loses his job
               </div>
             </foreignObject>
 
@@ -131,19 +170,18 @@
             <!-- Horizontal axis label -->
             <foreignObject x="150" y="520" width="700" height="80">
               <div xmlns="http://www.w3.org/1999/xhtml"
-                style="color: var(--gray-200); text-align: center; font-size: 36px; white-space: nowrap;"
-                class="handwritten">
-                % of persons who disapprove of officeholder's work
+                style="color: var(--gray-200); text-align: center; font-size: 0.72em; white-space: nowrap;">
+                % of persons who disapprove of officeholder's behavior
               </div>
             </foreignObject>
 
             <!-- Vertical axis label (rotated) -->
             <foreignObject x="80" y="25" width="60" height="500">
-              <div xmlns="http://www.w3.org/1999/xhtml" style="color: var(--gray-200); text-align: center; font-size: 36px; 
+              <div xmlns="http://www.w3.org/1999/xhtml" style="color: var(--gray-200); text-align: center; font-size: 0.72em; 
                           white-space: nowrap; overflow: visible;
                           transform: rotate(-90deg); transform-origin: center center;
-                          width: 500px; height: 60px; margin-left: -220px; margin-top: 220px;" class="handwritten">
-                likelihood that officeholder loses his job
+                          width: 500px; height: 60px; margin-left: -220px; margin-top: 220px;">
+                likelihood officeholder loses his job
               </div>
             </foreignObject>
 
@@ -168,44 +206,166 @@
         <h3>Steps:</h3>
         <ul style="list-style: none; padding-left: 0px;">
           <li style="position: relative;"><span
-              style="position: absolute; left: -1.2em; color: #27AE60; font-size: 1.2em;">✓</span>You learn a weird
-            definition of democracy;</li>
+              style="position: absolute; left: -1.2em; color: #27AE60; font-size: 1.2em;">✓</span>You learn a powerful
+            definition of democracy.</li>
           <li style="margin-top: 0.5em;">You learn how to flatten a line.</li>
-          <li style="margin-top: 0.5em;">You solve my cat problem;</li>
+          <li style="margin-top: 0.5em;">You solve my cat problem.</li>
+          <li style="margin-top: 0.5em;">You ask the right questions.</li>
         </ul>
       </section>
 
-      <section data-background-color="#2D2E35" style="text-align: left;">
-        <h4>How to weaken democracy</h4>
-        <ul>
-          <li>Limit voters' knowledge</li>
-          <ul>
-            <li>Use government power to intimidate, restrict, and subordinate independent news media.</li>
-            <li>Use government power to intimidate, restrict, and subordinate independent educational institutions.</li>
-            <li>De-fund government agencies that produce statistics documented government behavior.</li>
-          </ul>
-          <li>Limit voters' alternatives</li>
-          <ul>
-            <li>Declare political opponents criminals, and use law enforcement agencies to arrests and imprison them.
-            </li>
-            <li>Designate opposition protest as terrorism, and use the military to assault and detain those who engage
-              in it.</li>
-            <li>Fund paramilitary organizations who target political opponents with violence.</li>
-          </ul>
-        </ul>
+      <!--How to flatten a line-->
+      <section data-background-color="#2D2E35" style="text-align: left; position: relative;">
+        <div style="position: absolute; top: 0; left: 0; width: 960px; height: 700px;">
+          <!--slide title-->
+          <h4 style="position: absolute; top: 1em; left: 1em;">How to flatten a line</h4>
+
+          <!--line flattening diagram--> <!--data-fragment-index=1-->
+          <svg class="fragment fade-in-then-out" data-fragment-index="1"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" viewBox="0 0 1000 600"
+            xmlns="http://www.w3.org/2000/svg">
+            <!-- Axes -->
+            <line x1="150" y1="500" x2="850" y2="500" stroke="var(--gray-200)" stroke-width="2" />
+            <line x1="150" y1="500" x2="150" y2="50" stroke="var(--gray-200)" stroke-width="2" />
+
+            <!-- Horizontal axis label -->
+            <foreignObject x="150" y="520" width="700" height="80">
+              <div xmlns="http://www.w3.org/1999/xhtml"
+                style="color: var(--gray-200); text-align: center; font-size: 0.72em; white-space: nowrap;">
+                % of persons who disapprove of officeholder's behavior
+              </div>
+            </foreignObject>
+
+            <!-- Vertical axis label (rotated) -->
+            <foreignObject x="80" y="25" width="60" height="500">
+              <div xmlns="http://www.w3.org/1999/xhtml" style="color: var(--gray-200); text-align: center; font-size: 0.72em; 
+                          white-space: nowrap; overflow: visible;
+                          transform: rotate(-90deg); transform-origin: center center;
+                          width: 500px; height: 60px; margin-left: -220px; margin-top: 220px;">
+                likelihood officeholder loses his job
+              </div>
+            </foreignObject>
+
+            <!-- Red line with shallow positive slope -->
+            <line x1="150" y1="387.5" x2="850" y2="325" stroke="#E74C3C" stroke-width="4" />
+
+            <!-- Green line with steeper positive slope - intersects red line at 50% -->
+            <line x1="150" y1="506.25" x2="850" y2="206.25" stroke="#27AE60" stroke-width="4" />
+
+            <!-- Arrow marker definition -->
+            <defs>
+              <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                <polygon points="0 0, 10 3, 0 6" fill="white" />
+              </marker>
+            </defs>
+
+            <!-- Curved arrow suggesting clockwise rotation from green to red -->
+            <path d="M 780 250 A 150 150 0 0 1 790 320" stroke="white" stroke-width="3" fill="none"
+              marker-end="url(#arrowhead)" />
+          </svg>
+
+          <!--87%--><!--data-fragment-index=2-->
+          <h4 class="fragment fade-in-then-out" data-fragment-index="2"
+            style="position: absolute; top: calc(50% - 1em); left: 40%; font-size: 1.8em;">87%</h4>
+
+
+          <!--voters in dark--><!--data-fragment-index=3-->
+          <div class="fragment" data-fragment-index="3"
+            style="position: absolute; top: 2em; right: 1em; display: flex; flex-direction: column; align-items: center;">
+            <div class="handwritten" style="font-size: 0.8em; padding: 0; margin: 0;">Keep voters in the dark</div>
+            <img style="clip-path: ellipse(50% 50% at 50% 50%); display: block;" src="/assets/img/starry_night.webp"
+              width="180" height="180" />
+          </div>
+
+          <!--limit alternatives--><!--data-fragment-index=3-->
+          <div class="fragment" data-fragment-index="3"
+            style="position: absolute; bottom: 1em; right: 1em; display: flex; flex-direction: column; align-items: center;">
+            <div class="handwritten" style="font-size: 0.8em; padding: 0; margin: 0; margin-bottom: 0.5em;">Limit
+              voters' alternatives</div>
+            <div
+              style="font-size: 0.6em; background-color: var(--gray-50); color: var(--gray-800); padding: 0.5em 0.5em 0.5em 0em;">
+              <h4 style="color: var(--gray-800); text-align: center; text-decoration: underline;">Ballot</h4>
+              <ul style="list-style: none; padding-left: 0;">
+                <li style="padding-left: 1em; position: relative;">
+                  <span style="position: absolute; left: -0.5em;">☐</span>
+                  <span
+                    style="position: absolute; left: -0.3em; top: -0.3em; color: #27AE60; font-size: 1.2em; font-weight: 800;">✓</span>
+                  Incumbent
+                </li>
+                <li style="padding-left: 1em; position: relative;">
+                  <span style="position: absolute; left: -0.5em;">☐</span> Nobody
+                </li>
+                <li style="padding-left: 1em; position: relative;">
+                  <span style="position: absolute; left: -0.5em;">☐</span> Nobody
+                </li>
+                <li style="padding-left: 1em; position: relative;">
+                  <span style="position: absolute; left: -0.5em;">☐</span> Nobody
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!--coercive tools--><!--data-fragment-index=4-->
+          <div class="fragment" data-fragment-index="4" style="position: absolute; top: 30%; left: 0;">
+            <div style="position: relative; width: 320px; height: 300px;">
+              <!-- FTC Seal -->
+              <img src="/assets/img/coercion-collage/ftc_seal.svg"
+                style="position: absolute; top: 20px; left: 120px; width: 100px; height: 100px; object-fit: contain;" />
+              <!-- Federal Agents -->
+              <img src="/assets/img/coercion-collage/federal_agents.avif"
+                style="position: absolute; bottom: 0; left: 0; width: 140px; height: 100px; object-fit: cover;" />
+              <!-- Joint Chiefs -->
+              <img src="/assets/img/coercion-collage/joint_chiefs.webp"
+                style="position: absolute; bottom: 60px; left: 120px; width: 140px; height: 100px; object-fit: cover;" />
+              <!-- FCC Seal -->
+              <img src="/assets/img/coercion-collage/fcc_seal.svg"
+                style="position: absolute; top: 60px; left: 40px; width: 100px; height: 100px; object-fit: contain;" />
+              <!-- IRS Seal -->
+              <img src="/assets/img/coercion-collage/irs_seal.webp"
+                style="position: absolute; bottom: -20px; right: 90px; width: 100px; height: 100px; object-fit: contain;" />
+
+            </div>
+          </div>
+
+          <!--tactics--><!--data-fragment-index=4-->
+          <div class="fragment" data-fragment-index="5"
+            style="position: absolute; top: 6em; left: 2em; width: 80%; height: auto; background-color: var(--gray-300); color: var(--gray-800); font-size: 0.6em; overflow: hidden; padding: 1em; border-radius: 0.5em;">
+            <ul class="spaced-list">
+              <li>Target independent and critical media companies with regulatory
+                restrictions.</li>
+              <li>Intimidate independent and critical journalists via armed police and
+                military.
+              </li>
+              <li>De-fund government agencies that produce statistics documenting
+                government behavior.</li>
+              <li>Declare political opponents criminals, and use law enforcement agencies
+                to arrests and imprison
+                them.
+              </li>
+              <li>Designate opposition protest as terrorism, and use the military to
+                assault and detain those who
+                engage
+                in it.</li>
+              <li>Shelter supporters who use violence against your opponents from prosecution.</li>
+            </ul>
+          </div>
+        </div>
       </section>
+
 
       <!-- Steps -- Step 2 done -->
       <section data-background-color="#2D2E35" style="text-align: left;">
         <h3>Steps:</h3>
         <ul style="list-style: none; padding-left: 0px;">
           <li style="position: relative;"><span
-              style="position: absolute; left: -1.2em; color: #27AE60; font-size: 1.2em;">✓</span>You learn a weird
-            definition of democracy;</li>
+              style="position: absolute; left: -1.2em; color: #27AE60; font-size: 1.2em;">✓</span>You learn a
+            powerful
+            definition of democracy.</li>
           <li style="position: relative; margin-top: 0.5em;"><span
               style="position: absolute; left: -1.2em; color: #27AE60; font-size: 1.2em;">✓</span>You learn how to
             flatten a line.</li>
-          <li style="margin-top: 0.5em;">You solve my cat problem;</li>
+          <li style="margin-top: 0.5em;">You solve my cat problem.</li>
+          <li style="margin-top: 0.5em;">You ask the right questions.</li>
         </ul>
       </section>
 
@@ -225,14 +385,11 @@
           <strong>Inevitable:</strong> Cat gets hungry and eats stuff.
         </div>
         <div style="margin-top: 1em;">
-          <strong>Not Inevitable:</strong> Stuff cat will eat is left on counter overnight.
+          <strong>Not inevitable:</strong> Stuff cat will eat is left on counter overnight.
         </div>
       </section>
 
-      <!-- The democracy problem-->
-      <section data-background-color="#2D2E35">
-        <img src="/assets/img/falling_ratings.webp" width="900px" />
-      </section>
+
 
       <!-- "Get a new politician" is not the solution-->
       <section data-background-color="#2D2E35" style="text-align: left;">
@@ -240,122 +397,28 @@
           <strong>Inevitable:</strong> Some politicians will want to weaken democracy.
         </div>
         <div style="margin-top: 1em;">
-          <strong>Not Inevitable:</strong> Politicians can get away with weakening democracy.
-        </div>
-      </section>
-
-      <!-- Visualization of Democratic-ness-->
-      <section data-background-color="#2D2E35">
-        <div style="position: relative; width: 100%; height: 600px;">
-          <!-- Base SVG - Always visible -->
-          <svg class="fragment" data-fragment-index="0"
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" viewBox="0 0 1000 600"
-            xmlns="http://www.w3.org/2000/svg">
-            <!-- Axes -->
-            <line x1="150" y1="500" x2="850" y2="500" stroke="var(--gray-200)" stroke-width="2" />
-            <line x1="150" y1="500" x2="150" y2="50" stroke="var(--gray-200)" stroke-width="2" />
-
-            <!-- Horizontal axis label -->
-            <foreignObject x="150" y="520" width="700" height="80">
-              <div xmlns="http://www.w3.org/1999/xhtml"
-                style="color: var(--gray-200); text-align: center; font-size: 36px; white-space: nowrap;"
-                class="handwritten">
-                % of persons who disapprove of officeholder's work
-              </div>
-            </foreignObject>
-
-            <!-- Vertical axis label (rotated) -->
-            <foreignObject x="80" y="25" width="60" height="500">
-              <div xmlns="http://www.w3.org/1999/xhtml" style="color: var(--gray-200); text-align: center; font-size: 36px; 
-                          white-space: nowrap; overflow: visible;
-                          transform: rotate(-90deg); transform-origin: center center;
-                          width: 500px; height: 60px; margin-left: -220px; margin-top: 220px;" class="handwritten">
-                likelihood that officeholder loses his job
-              </div>
-            </foreignObject>
-          </svg>
-
-          <!-- Overlay SVG 1 - Fade in then out -->
-          <svg class="fragment fade-in-then-out" data-fragment-index="1"
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" viewBox="0 0 1000 600"
-            xmlns="http://www.w3.org/2000/svg">
-            <!-- Axes -->
-            <line x1="150" y1="500" x2="850" y2="500" stroke="var(--gray-200)" stroke-width="2" />
-            <line x1="150" y1="500" x2="150" y2="50" stroke="var(--gray-200)" stroke-width="2" />
-
-            <!-- Horizontal axis label -->
-            <foreignObject x="150" y="520" width="700" height="80">
-              <div xmlns="http://www.w3.org/1999/xhtml"
-                style="color: var(--gray-200); text-align: center; font-size: 36px; white-space: nowrap;"
-                class="handwritten">
-                % of persons who disapprove of officeholder's work
-              </div>
-            </foreignObject>
-
-            <!-- Vertical axis label (rotated) -->
-            <foreignObject x="80" y="25" width="60" height="500">
-              <div xmlns="http://www.w3.org/1999/xhtml" style="color: var(--gray-200); text-align: center; font-size: 36px; 
-                          white-space: nowrap; overflow: visible;
-                          transform: rotate(-90deg); transform-origin: center center;
-                          width: 500px; height: 60px; margin-left: -220px; margin-top: 220px;" class="handwritten">
-                likelihood that officeholder loses his job
-              </div>
-            </foreignObject>
-
-            <!-- Red line with shallow positive slope -->
-            <line x1="150" y1="387.5" x2="850" y2="325" stroke="#E74C3C" stroke-width="4" />
-          </svg>
-
-          <!-- Label for overlay 1 - absolutely positioned -->
-          <div class="fragment fade-in handwritten" data-fragment-index="1"
-            style="position: absolute; left: 78%; top: 54%; color: #E74C3C; font-size: 36px; white-space: nowrap;">
-            not very democratic 😞
-          </div>
-
-          <!-- Final SVG - Fade in and stay -->
-          <svg class="fragment fade-in" data-fragment-index="2"
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" viewBox="0 0 1000 600"
-            xmlns="http://www.w3.org/2000/svg">
-            <!-- Axes -->
-            <line x1="150" y1="500" x2="850" y2="500" stroke="var(--gray-200)" stroke-width="2" />
-            <line x1="150" y1="500" x2="150" y2="50" stroke="var(--gray-200)" stroke-width="2" />
-
-            <!-- Horizontal axis label -->
-            <foreignObject x="150" y="520" width="700" height="80">
-              <div xmlns="http://www.w3.org/1999/xhtml"
-                style="color: var(--gray-200); text-align: center; font-size: 36px; white-space: nowrap;"
-                class="handwritten">
-                % of persons who disapprove of officeholder's work
-              </div>
-            </foreignObject>
-
-            <!-- Vertical axis label (rotated) -->
-            <foreignObject x="80" y="25" width="60" height="500">
-              <div xmlns="http://www.w3.org/1999/xhtml" style="color: var(--gray-200); text-align: center; font-size: 36px; 
-                          white-space: nowrap; overflow: visible;
-                          transform: rotate(-90deg); transform-origin: center center;
-                          width: 500px; height: 60px; margin-left: -220px; margin-top: 220px;" class="handwritten">
-                likelihood that officeholder loses his job
-              </div>
-            </foreignObject>
-
-            <!-- Red line with shallow positive slope -->
-            <line x1="150" y1="387.5" x2="850" y2="325" stroke="#E74C3C" stroke-width="4" />
-
-            <!-- Green line with steeper positive slope - intersects red line at 50% -->
-            <line x1="150" y1="426.25" x2="850" y2="286.25" stroke="#27AE60" stroke-width="4" />
-          </svg>
-
-          <!-- Label for overlay 2 - green line -->
-          <div class="fragment fade-in handwritten" data-fragment-index="2"
-            style="position: absolute; left: 78%; top: 40%; color: #27AE60; font-size: 36px; white-space: nowrap;">
-            more democratic 😊
-          </div>
+          <strong>Not inevitable:</strong> Politicians who attempt to weaken democracy succeed.
         </div>
       </section>
 
 
-
+      <!-- Steps -- Step 3 done -->
+      <section data-background-color="#2D2E35" style="text-align: left;">
+        <h3>Steps:</h3>
+        <ul style="list-style: none; padding-left: 0px;">
+          <li style="position: relative;"><span
+              style="position: absolute; left: -1.2em; color: #27AE60; font-size: 1.2em;">✓</span>You learn a
+            powerful
+            definition of democracy.</li>
+          <li style="position: relative; margin-top: 0.5em;"><span
+              style="position: absolute; left: -1.2em; color: #27AE60; font-size: 1.2em;">✓</span>You learn how to
+            flatten a line.</li>
+          <li style="margin-top: 0.5em;"><span
+              style="position: absolute; left: -0.4em; color: #27AE60; font-size: 1.2em;">✓</span>You solve my cat
+            problem.</li>
+          <li style="margin-top: 0.5em;">You ask the right questions.</li>
+        </ul>
+      </section>
 
       <!-- I am going to eat you -->
       <section data-background-color="#2D2E35">
@@ -365,17 +428,49 @@
       </section>
 
 
-      <!-- I am going to eat you -->
+      <!-- I am going to eat you NOPE 1 !-->
       <section data-background-color="#2D2E35">
         <div style="position: relative; display: inline-block;">
           <img src="/assets/img/i_am_going_to_eat_you.webp" width="700px" />
-          <div class="handwritten fragment fade-in-then-out"
+          <div class="handwritten"
             style="width: calc(18px * 9); position: absolute; top: 20%; left: 90%; transform: translate(-50%, -50%); background-color: white; color: blue; padding: 10px; font-size: 18px; font-weight: bold; text-align: center; border: 1px solid var(--gray-800);">
             I WILL WEAKEN DEMOCRACY
           </div>
         </div>
       </section>
 
+      <!-- I am going to eat you NOPE 2 !-->
+      <section data-background-color="#2D2E35">
+        <div style="position: relative; display: inline-block;">
+          <img src="/assets/img/i_am_going_to_eat_you.webp" width="700px" />
+          <div class="handwritten"
+            style="width: calc(18px * 9); position: absolute; top: 20%; left: 90%; transform: translate(-50%, -50%); background-color: white; color: blue; padding: 10px; font-size: 18px; font-weight: bold; text-align: center; border: 1px solid var(--gray-800);">
+            I WILL DIRECT LAW ENFORCEMENT TO ARREST OPPOSITION POLITICIANS
+          </div>
+        </div>
+      </section>
+
+      <!-- I am going to eat you more likely !-->
+      <section data-background-color="#2D2E35">
+        <div style="position: relative; display: inline-block;">
+          <img src="/assets/img/i_am_going_to_eat_you.webp" width="700px" />
+          <div class="handwritten"
+            style="width: calc(18px * 9); position: absolute; top: 20%; left: 90%; transform: translate(-50%, -50%); background-color: white; color: blue; padding: 10px; font-size: 18px; font-weight: bold; text-align: center; border: 1px solid var(--gray-800);">
+            I WILL PROTECT YOU FROM DOMESTIC TERRORISTS
+          </div>
+        </div>
+      </section>
+
+
+      <section data-background-color="#2D2E35">
+        <ul>
+          <li>When a politician tries to weaken democracy, do voter's learn about it?</li>
+          <li>When voters learn about a politician's attempt to weaken democracy, do voters recognize that attempt for
+            what it is?</li>
+          <li>When voters correctly understand a politicians to have tried to weaken democracy, do they respond by
+            voting for someone else?</li>
+        </ul>
+      </section>
 
 
 
