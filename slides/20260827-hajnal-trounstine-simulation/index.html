@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+
+  <!-- RevealJS core CSS -->
+  <link rel="stylesheet" href="../../node_modules/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="../../node_modules/reveal.js/dist/theme/white.css" id="theme">
+
+  <!-- Shared custom styles -->
+  <link rel="stylesheet" href="../../shared/styles/theme.css">
+  <link rel="stylesheet" href="../../shared/styles/common.css">
+
+  <!-- Presentation-specific styles -->
+  <style>
+    /* Utility class for lists with spacing between items */
+    ul.spaced-list>li:not(:last-child) {
+      margin-bottom: 0.75em;
+    }
+
+    /* Custom checkbox-style bullets */
+    ul.checkbox-list,
+    ul.checkbox-list ul {
+      padding-left: 0;
+      margin: 0;
+    }
+
+    /* Indent nested lists */
+    ul.checkbox-list ul {
+      margin-left: 2em;
+    }
+
+    ul.checkbox-list li {
+      display: list-item;
+      padding-left: 0.5em;
+    }
+
+    ul.checkbox-list li::marker {
+      content: '☐ ';
+      font-size: 1.2em;
+    }
+
+    /* For checked items - add class "checked" to the <li> */
+    ul.checkbox-list li.checked::marker {
+      content: '☑ ';
+      color: #90EE90;
+    }
+
+    /* Custom fragment effect: check items when they become visible */
+    ul.checkbox-list li.fragment.check-item.visible::marker {
+      content: '☑ ';
+      color: #90EE90;
+    }
+
+    /* For items with red X */
+    ul.checkbox-list li.red-x::marker {
+      content: '☒ ';
+      color: #FF6B6B;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Slide 1: Title and city-years only -->
+      <section data-background-color="#2D2E35">
+        <h5>Ten Mayoral Elections with Uneven Turnout</h5>
+
+        <div
+          style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: auto repeat(5, 1fr); gap: 0.25rem; max-width: 1200px; margin: 0 auto; padding: 0; font-size: small;">
+
+          <!-- Header Column 1 -->
+          <div style="padding: 0.25rem; display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1;"></div>
+            <div style="flex: 1; text-align: center; font-weight: bold; visibility: hidden;">Actual Winner</div>
+            <div style="flex: 1; text-align: center; font-weight: bold; visibility: hidden;">Simulated Winner</div>
+          </div>
+
+          <!-- Header Column 2 -->
+          <div style="padding: 0.25rem; display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1;"></div>
+            <div style="flex: 1; text-align: center; font-weight: bold; visibility: hidden;">Actual Winner</div>
+            <div style="flex: 1; text-align: center; font-weight: bold; visibility: hidden;">Simulated Winner</div>
+          </div>
+
+          <!-- Election 1 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Chicago<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/chicago_1999_daley.webp" alt="Richard Daley"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Richard Daley</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/chicago_1999_daley.webp" alt="Richard Daley"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Richard Daley</div>
+            </div>
+          </div>
+
+          <!-- Election 2 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Dallas<br />2002</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/dallas_2002_miller.webp" alt="Laura Miller"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Laura Miller</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/dallas_2002_miller.webp" alt="Laura Miller"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Laura Miller</div>
+            </div>
+          </div>
+
+          <!-- Election 3 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Detroit<br />2002</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/detroit_2002_kilpatrick.webp" alt="Kwame Kilpatrick"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Kwame Kilpatrick</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/detroit_2002_kilpatrick.webp" alt="Kwame Kilpatrick"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Kwame Kilpatrick</div>
+            </div>
+          </div>
+
+          <!-- Election 4 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Houston<br />2001</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/houston_2001_brown.webp" alt="Lee Brown"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Lee Brown</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/houston_2001_sanchez.webp" alt="Orlando Sanchez"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Orlando Sanchez</div>
+            </div>
+          </div>
+
+          <!-- Election 5 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Los Angeles<br />2001</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/losangeles_2001_hahn.webp" alt="James Hahn"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>James Hahn</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/losangeles_2001_hahn.webp" alt="James Hahn"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>James Hahn</div>
+            </div>
+          </div>
+
+          <!-- Election 6 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>New York City<br />2002</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/newyork_2002_bloomberg.webp" alt="Michael Bloomberg"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Michael Bloomberg</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/newyork_2002_green.webp" alt="Mark Green"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Mark Green</div>
+            </div>
+          </div>
+
+          <!-- Election 7 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Philadelphia<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/philadelphia_1999_street.webp" alt="John Street"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>John Street</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/philadelphia_1999_street.webp" alt="John Street"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>John Street</div>
+            </div>
+          </div>
+
+          <!-- Election 8 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Phoenix<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/phoenix_1999_rimsza.webp" alt="Skip Rimsza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Skip Rimsza</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/phoenix_1999_rimsza.webp" alt="Skip Rimsza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Skip Rimsza</div>
+            </div>
+          </div>
+
+          <!-- Election 9 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>San Antonio<br />2001</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sanantonio_2001_garza.webp" alt="Ed Garza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Ed Garza</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sanantonio_2001_garza.webp" alt="Ed Garza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Ed Garza</div>
+            </div>
+          </div>
+
+          <!-- Election 10 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>San Diego<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sandiego_1999_murphy.webp" alt="Dick Murphy"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Dick Murphy</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sandiego_1999_roberts.webp" alt="Ron Roberts"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Ron Roberts</div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Slide 2: Title and city-years only, Houston Highlighted -->
+      <section data-background-color="#2D2E35">
+        <h5>Ten Mayoral Elections with Uneven Turnout</h5>
+
+        <div
+          style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: auto repeat(5, 1fr); gap: 0.25rem; max-width: 1200px; margin: 0 auto; padding: 0; font-size: small;">
+
+          <!-- Header Column 1 -->
+          <div style="padding: 0.25rem; display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1;"></div>
+            <div style="flex: 1; text-align: center; font-weight: bold; visibility: hidden;">Actual Winner</div>
+            <div style="flex: 1; text-align: center; font-weight: bold; visibility: hidden;">Simulated Winner</div>
+          </div>
+
+          <!-- Header Column 2 -->
+          <div style="padding: 0.25rem; display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1;"></div>
+            <div style="flex: 1; text-align: center; font-weight: bold; visibility: hidden;">Actual Winner</div>
+            <div style="flex: 1; text-align: center; font-weight: bold; visibility: hidden;">Simulated Winner</div>
+          </div>
+
+          <!-- Election 1 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Chicago<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/chicago_1999_daley.webp" alt="Richard Daley"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Richard Daley</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/chicago_1999_daley.webp" alt="Richard Daley"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Richard Daley</div>
+            </div>
+          </div>
+
+          <!-- Election 2 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Dallas<br />2002</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/dallas_2002_miller.webp" alt="Laura Miller"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Laura Miller</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/dallas_2002_miller.webp" alt="Laura Miller"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Laura Miller</div>
+            </div>
+          </div>
+
+          <!-- Election 3 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Detroit<br />2002</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/detroit_2002_kilpatrick.webp" alt="Kwame Kilpatrick"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Kwame Kilpatrick</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/detroit_2002_kilpatrick.webp" alt="Kwame Kilpatrick"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Kwame Kilpatrick</div>
+            </div>
+          </div>
+
+          <!-- Election 4 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center; background-color: aquamarine; color: black">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Houston<br />2001</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/houston_2001_brown.webp" alt="Lee Brown"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Lee Brown</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/houston_2001_sanchez.webp" alt="Orlando Sanchez"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Orlando Sanchez</div>
+            </div>
+          </div>
+
+          <!-- Election 5 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Los Angeles<br />2001</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/losangeles_2001_hahn.webp" alt="James Hahn"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>James Hahn</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/losangeles_2001_hahn.webp" alt="James Hahn"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>James Hahn</div>
+            </div>
+          </div>
+
+          <!-- Election 6 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>New York City<br />2002</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/newyork_2002_bloomberg.webp" alt="Michael Bloomberg"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Michael Bloomberg</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/newyork_2002_green.webp" alt="Mark Green"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Mark Green</div>
+            </div>
+          </div>
+
+          <!-- Election 7 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Philadelphia<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/philadelphia_1999_street.webp" alt="John Street"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>John Street</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/philadelphia_1999_street.webp" alt="John Street"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>John Street</div>
+            </div>
+          </div>
+
+          <!-- Election 8 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Phoenix<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/phoenix_1999_rimsza.webp" alt="Skip Rimsza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Skip Rimsza</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/phoenix_1999_rimsza.webp" alt="Skip Rimsza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Skip Rimsza</div>
+            </div>
+          </div>
+
+          <!-- Election 9 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>San Antonio<br />2001</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sanantonio_2001_garza.webp" alt="Ed Garza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Ed Garza</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sanantonio_2001_garza.webp" alt="Ed Garza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Ed Garza</div>
+            </div>
+          </div>
+
+          <!-- Election 10 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>San Diego<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sandiego_1999_murphy.webp" alt="Dick Murphy"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Dick Murphy</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sandiego_1999_roberts.webp" alt="Ron Roberts"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Ron Roberts</div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          style="position: absolute; top: 230px; right: 8px; background-color: aquamarine; color: black; font-size: large; padding: 10px; border-radius: 10%; font-weight: 800;">
+          <div>Hispanic residents...</div>
+          <ul>
+            <li>About 45% of population</li>
+            <li>About 15% of voters</li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- Slide 4: Actual Winners visible -->
+      <section data-background-color="#2D2E35">
+        <h5>Ten Mayoral Elections with Uneven Turnout</h5>
+
+        <div
+          style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: auto repeat(5, 1fr); gap: 0.25rem; max-width: 1200px; margin: 0 auto; padding: 0; font-size: small;">
+
+          <!-- Header Column 1 -->
+          <div style="padding: 0.25rem; display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1;"></div>
+            <div style="flex: 1; text-align: center; font-weight: bold;">Actual Winner</div>
+            <div style="flex: 1; text-align: center; font-weight: bold; visibility: hidden;">Simulated Winner</div>
+          </div>
+
+          <!-- Header Column 2 -->
+          <div style="padding: 0.25rem; display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1;"></div>
+            <div style="flex: 1; text-align: center; font-weight: bold;">Actual Winner</div>
+            <div style="flex: 1; text-align: center; font-weight: bold; visibility: hidden;">Simulated Winner</div>
+          </div>
+
+          <!-- Election 1 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Chicago<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/chicago_1999_daley.webp" alt="Richard Daley"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Richard Daley</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/chicago_1999_daley.webp" alt="Richard Daley"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Richard Daley</div>
+            </div>
+          </div>
+
+          <!-- Election 2 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Dallas<br />2002</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/dallas_2002_miller.webp" alt="Laura Miller"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Laura Miller</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/dallas_2002_miller.webp" alt="Laura Miller"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Laura Miller</div>
+            </div>
+          </div>
+
+          <!-- Election 3 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Detroit<br />2002</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/detroit_2002_kilpatrick.webp" alt="Kwame Kilpatrick"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Kwame Kilpatrick</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/detroit_2002_kilpatrick.webp" alt="Kwame Kilpatrick"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Kwame Kilpatrick</div>
+            </div>
+          </div>
+
+          <!-- Election 4 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Houston<br />2001</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/houston_2001_brown.webp" alt="Lee Brown"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Lee Brown</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/houston_2001_sanchez.webp" alt="Orlando Sanchez"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Orlando Sanchez</div>
+            </div>
+          </div>
+
+          <!-- Election 5 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Los Angeles<br />2001</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/losangeles_2001_hahn.webp" alt="James Hahn"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>James Hahn</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/losangeles_2001_hahn.webp" alt="James Hahn"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>James Hahn</div>
+            </div>
+          </div>
+
+          <!-- Election 6 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>New York City<br />2002</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/newyork_2002_bloomberg.webp" alt="Michael Bloomberg"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Michael Bloomberg</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/newyork_2002_green.webp" alt="Mark Green"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Mark Green</div>
+            </div>
+          </div>
+
+          <!-- Election 7 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Philadelphia<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/philadelphia_1999_street.webp" alt="John Street"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>John Street</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/philadelphia_1999_street.webp" alt="John Street"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>John Street</div>
+            </div>
+          </div>
+
+          <!-- Election 8 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Phoenix<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/phoenix_1999_rimsza.webp" alt="Skip Rimsza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Skip Rimsza</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/phoenix_1999_rimsza.webp" alt="Skip Rimsza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Skip Rimsza</div>
+            </div>
+          </div>
+
+          <!-- Election 9 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>San Antonio<br />2001</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sanantonio_2001_garza.webp" alt="Ed Garza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Ed Garza</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sanantonio_2001_garza.webp" alt="Ed Garza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Ed Garza</div>
+            </div>
+          </div>
+
+          <!-- Election 10 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>San Diego<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sandiego_1999_murphy.webp" alt="Dick Murphy"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Dick Murphy</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sandiego_1999_roberts.webp" alt="Ron Roberts"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Ron Roberts</div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Slide 5: Simulated Winners visible where they match Actual Winners -->
+      <section data-background-color="#2D2E35">
+        <h5>Ten Mayoral Elections with Uneven Turnout</h5>
+
+        <div
+          style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: auto repeat(5, 1fr); gap: 0.25rem; max-width: 1200px; margin: 0 auto; padding: 0; font-size: small;">
+
+          <!-- Header Column 1 -->
+          <div style="padding: 0.25rem; display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1;"></div>
+            <div style="flex: 1; text-align: center; font-weight: bold;">Actual Winner</div>
+            <div style="flex: 1; text-align: center; font-weight: bold;">Simulated Winner</div>
+          </div>
+
+          <!-- Header Column 2 -->
+          <div style="padding: 0.25rem; display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1;"></div>
+            <div style="flex: 1; text-align: center; font-weight: bold;">Actual Winner</div>
+            <div style="flex: 1; text-align: center; font-weight: bold;">Simulated Winner</div>
+          </div>
+
+          <!-- Election 1 - Chicago (match: Daley) -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Chicago<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/chicago_1999_daley.webp" alt="Richard Daley"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Richard Daley</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/chicago_1999_daley.webp" alt="Richard Daley"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Richard Daley</div>
+            </div>
+          </div>
+
+          <!-- Election 2 - Dallas (match: Miller) -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Dallas<br />2002</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/dallas_2002_miller.webp" alt="Laura Miller"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Laura Miller</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/dallas_2002_miller.webp" alt="Laura Miller"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Laura Miller</div>
+            </div>
+          </div>
+
+          <!-- Election 3 - Detroit (match: Kilpatrick) -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Detroit<br />2002</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/detroit_2002_kilpatrick.webp" alt="Kwame Kilpatrick"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Kwame Kilpatrick</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/detroit_2002_kilpatrick.webp" alt="Kwame Kilpatrick"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Kwame Kilpatrick</div>
+            </div>
+          </div>
+
+          <!-- Election 4 - Houston (DIFFERENT: Brown vs Sanchez) -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Houston<br />2001</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/houston_2001_brown.webp" alt="Lee Brown"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Lee Brown</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/houston_2001_sanchez.webp" alt="Orlando Sanchez"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Orlando Sanchez</div>
+            </div>
+          </div>
+
+          <!-- Election 5 - Los Angeles (match: Hahn) -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Los Angeles<br />2001</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/losangeles_2001_hahn.webp" alt="James Hahn"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>James Hahn</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/losangeles_2001_hahn.webp" alt="James Hahn"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>James Hahn</div>
+            </div>
+          </div>
+
+          <!-- Election 6 - New York City (DIFFERENT: Bloomberg vs Green) -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>New York City<br />2002</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/newyork_2002_bloomberg.webp" alt="Michael Bloomberg"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Michael Bloomberg</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/newyork_2002_green.webp" alt="Mark Green"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Mark Green</div>
+            </div>
+          </div>
+
+          <!-- Election 7 - Philadelphia (match: Street) -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Philadelphia<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/philadelphia_1999_street.webp" alt="John Street"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>John Street</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/philadelphia_1999_street.webp" alt="John Street"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>John Street</div>
+            </div>
+          </div>
+
+          <!-- Election 8 - Phoenix (match: Rimsza) -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Phoenix<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/phoenix_1999_rimsza.webp" alt="Skip Rimsza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Skip Rimsza</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/phoenix_1999_rimsza.webp" alt="Skip Rimsza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Skip Rimsza</div>
+            </div>
+          </div>
+
+          <!-- Election 9 - San Antonio (match: Garza) -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>San Antonio<br />2001</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sanantonio_2001_garza.webp" alt="Ed Garza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Ed Garza</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sanantonio_2001_garza.webp" alt="Ed Garza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Ed Garza</div>
+            </div>
+          </div>
+
+          <!-- Election 10 - San Diego (DIFFERENT: Murphy vs Roberts) -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>San Diego<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sandiego_1999_murphy.webp" alt="Dick Murphy"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Dick Murphy</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; visibility: hidden;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sandiego_1999_roberts.webp" alt="Ron Roberts"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Ron Roberts</div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Slide 6: Full data with different winners highlighted -->
+      <section data-background-color="#2D2E35">
+        <h5>Ten Mayoral Elections with Uneven Turnout</h5>
+
+        <div
+          style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: auto repeat(5, 1fr); gap: 0.25rem; max-width: 1200px; margin: 0 auto; padding: 0; font-size: small;">
+
+          <!-- Header Column 1 -->
+          <div style="padding: 0.25rem; display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1;"></div>
+            <div style="flex: 1; text-align: center; font-weight: bold;">Actual Winner</div>
+            <div style="flex: 1; text-align: center; font-weight: bold;">Simulated Winner</div>
+          </div>
+
+          <!-- Header Column 2 -->
+          <div style="padding: 0.25rem; display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1;"></div>
+            <div style="flex: 1; text-align: center; font-weight: bold;">Actual Winner</div>
+            <div style="flex: 1; text-align: center; font-weight: bold;">Simulated Winner</div>
+          </div>
+
+          <!-- Election 1 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Chicago<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/chicago_1999_daley.webp" alt="Richard Daley"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Richard Daley</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/chicago_1999_daley.webp" alt="Richard Daley"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Richard Daley</div>
+            </div>
+          </div>
+
+          <!-- Election 2 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Dallas<br />2002</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/dallas_2002_miller.webp" alt="Laura Miller"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Laura Miller</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/dallas_2002_miller.webp" alt="Laura Miller"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Laura Miller</div>
+            </div>
+          </div>
+
+          <!-- Election 3 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Detroit<br />2002</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/detroit_2002_kilpatrick.webp" alt="Kwame Kilpatrick"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Kwame Kilpatrick</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/detroit_2002_kilpatrick.webp" alt="Kwame Kilpatrick"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Kwame Kilpatrick</div>
+            </div>
+          </div>
+
+          <!-- Election 4 - DIFFERENT WINNER -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center; background-color: lightgray; color: black;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Houston<br />2001</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/houston_2001_brown.webp" alt="Lee Brown"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Lee Brown</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/houston_2001_sanchez.webp" alt="Orlando Sanchez"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Orlando Sanchez</div>
+            </div>
+          </div>
+
+          <!-- Election 5 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Los Angeles<br />2001</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/losangeles_2001_hahn.webp" alt="James Hahn"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>James Hahn</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/losangeles_2001_hahn.webp" alt="James Hahn"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>James Hahn</div>
+            </div>
+          </div>
+
+          <!-- Election 6 - DIFFERENT WINNER -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center; background-color: lightgray; color: black;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>New York City<br />2002</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/newyork_2002_bloomberg.webp" alt="Michael Bloomberg"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Michael Bloomberg</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/newyork_2002_green.webp" alt="Mark Green"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Mark Green</div>
+            </div>
+          </div>
+
+          <!-- Election 7 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Philadelphia<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/philadelphia_1999_street.webp" alt="John Street"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>John Street</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/philadelphia_1999_street.webp" alt="John Street"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>John Street</div>
+            </div>
+          </div>
+
+          <!-- Election 8 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Phoenix<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/phoenix_1999_rimsza.webp" alt="Skip Rimsza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Skip Rimsza</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/phoenix_1999_rimsza.webp" alt="Skip Rimsza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Skip Rimsza</div>
+            </div>
+          </div>
+
+          <!-- Election 9 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>San Antonio<br />2001</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sanantonio_2001_garza.webp" alt="Ed Garza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Ed Garza</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sanantonio_2001_garza.webp" alt="Ed Garza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Ed Garza</div>
+            </div>
+          </div>
+
+          <!-- Election 10 - DIFFERENT WINNER -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center; background-color: lightgray; color: black;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>San Diego<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sandiego_1999_murphy.webp" alt="Dick Murphy"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Dick Murphy</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sandiego_1999_roberts.webp" alt="Ron Roberts"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Ron Roberts</div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Slide 7: Full data -->
+      <section data-background-color="#2D2E35">
+        <h5>Ten Mayoral Elections with Uneven Turnout</h5>
+
+        <div
+          style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: auto repeat(5, 1fr); gap: 0.25rem; max-width: 1200px; margin: 0 auto; padding: 0; font-size: small;">
+
+          <!-- Header Column 1 -->
+          <div style="padding: 0.25rem; display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1;"></div>
+            <div style="flex: 1; text-align: center; font-weight: bold;">Actual Winner</div>
+            <div style="flex: 1; text-align: center; font-weight: bold;">Simulated Winner</div>
+          </div>
+
+          <!-- Header Column 2 -->
+          <div style="padding: 0.25rem; display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1;"></div>
+            <div style="flex: 1; text-align: center; font-weight: bold;">Actual Winner</div>
+            <div style="flex: 1; text-align: center; font-weight: bold;">Simulated Winner</div>
+          </div>
+
+          <!-- Election 1 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Chicago<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/chicago_1999_daley.webp" alt="Richard Daley"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Richard Daley</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/chicago_1999_daley.webp" alt="Richard Daley"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Richard Daley</div>
+            </div>
+          </div>
+
+          <!-- Election 2 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Dallas<br />2002</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/dallas_2002_miller.webp" alt="Laura Miller"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Laura Miller</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/dallas_2002_miller.webp" alt="Laura Miller"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Laura Miller</div>
+            </div>
+          </div>
+
+          <!-- Election 3 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Detroit<br />2002</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/detroit_2002_kilpatrick.webp" alt="Kwame Kilpatrick"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Kwame Kilpatrick</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/detroit_2002_kilpatrick.webp" alt="Kwame Kilpatrick"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Kwame Kilpatrick</div>
+            </div>
+          </div>
+
+          <!-- Election 4 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Houston<br />2001</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/houston_2001_brown.webp" alt="Lee Brown"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Lee Brown</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/houston_2001_sanchez.webp" alt="Orlando Sanchez"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Orlando Sanchez</div>
+            </div>
+          </div>
+
+          <!-- Election 5 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Los Angeles<br />2001</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/losangeles_2001_hahn.webp" alt="James Hahn"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>James Hahn</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/losangeles_2001_hahn.webp" alt="James Hahn"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>James Hahn</div>
+            </div>
+          </div>
+
+          <!-- Election 6 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>New York City<br />2002</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/newyork_2002_bloomberg.webp" alt="Michael Bloomberg"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Michael Bloomberg</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/newyork_2002_green.webp" alt="Mark Green"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Mark Green</div>
+            </div>
+          </div>
+
+          <!-- Election 7 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Philadelphia<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/philadelphia_1999_street.webp" alt="John Street"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>John Street</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/philadelphia_1999_street.webp" alt="John Street"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>John Street</div>
+            </div>
+          </div>
+
+          <!-- Election 8 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>Phoenix<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/phoenix_1999_rimsza.webp" alt="Skip Rimsza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Skip Rimsza</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/phoenix_1999_rimsza.webp" alt="Skip Rimsza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Skip Rimsza</div>
+            </div>
+          </div>
+
+          <!-- Election 9 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>San Antonio<br />2001</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sanantonio_2001_garza.webp" alt="Ed Garza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Ed Garza</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sanantonio_2001_garza.webp" alt="Ed Garza"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Ed Garza</div>
+            </div>
+          </div>
+
+          <!-- Election 10 -->
+          <div
+            style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center;">
+            <div style="flex: 1; font-size: medium;">
+              <strong>San Diego<br />1999</strong>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sandiego_1999_murphy.webp" alt="Dick Murphy"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Dick Murphy</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/hajnal-trounstine-simulation/sandiego_1999_roberts.webp" alt="Ron Roberts"
+                style="max-width: 100%; height: auto; display: block; margin: 0;">
+              <div>Ron Roberts</div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- Slide 8: When uneven turnout matters -->
+      <section data-background-color="#2D2E35">
+        <div
+          style="display: flex; width: 960px; height: 700px; position: absolute; top: 0; left: 0; align-items: stretch;">
+          <!-- Left half: factors list -->
+          <div
+            style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 1rem 2rem; box-sizing: border-box;">
+            <div>
+              <div style="text-align: left; margin-bottom: 1rem; font-size: 36px">When uneven turnout matters:</div>
+              <ul class="checkbox-list" style="font-size: 28px; text-align: left;">
+                <li>Close election</li>
+                <li>low-turnout group of citizens...</li>
+                <ul>
+                  <li>...is large</li>
+                  <li>...heavily favors loser</li>
+                </ul>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Right half: examples (to be filled later) -->
+          <div
+            style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; box-sizing: border-box;">
+            <!-- Content will go here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 9: When uneven turnout matters -- Houston Case -->
+      <section data-background-color="#2D2E35">
+        <div
+          style="display: flex; width: 960px; height: 700px; position: absolute; top: 0; left: 0; align-items: stretch;">
+          <!-- Left half: factors list -->
+          <div
+            style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 1rem 2rem; box-sizing: border-box;">
+            <div>
+              <div style="text-align: left; margin-bottom: 1rem; font-size: 36px">When uneven turnout matters:</div>
+              <ul class="checkbox-list" style="font-size: 28px; text-align: left;">
+                <li class="fragment custom check-item" data-fragment-index="2">Close election</li>
+                <li class="fragment custom check-item" data-fragment-index="3">low-turnout group of citizens...</li>
+                <ul>
+                  <li class="fragment custom check-item" data-fragment-index="4">...is large</li>
+                  <li class="fragment custom check-item" data-fragment-index="5">...heavily favors loser</li>
+                </ul>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Right half: Houston 2001 election details -->
+          <div
+            style="flex: 1; display: flex; flex-direction: column; align-items: stretch; padding: 2rem; box-sizing: border-box;">
+            <!-- Column headers -->
+            <div style="padding: 0.25rem; display: flex; gap: 0.25rem; align-items: center; font-size: small;">
+              <div style="flex: 1;"></div>
+              <div style="flex: 1; text-align: center; font-weight: bold;">Actual Winner</div>
+              <div style="flex: 1; text-align: center; font-weight: bold;">Simulated Winner</div>
+            </div>
+
+            <!-- Houston 2001 election entry -->
+            <div
+              style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center; font-size: small;">
+              <div style="flex: 1; font-size: medium;">
+                <strong>Houston<br />2001</strong>
+              </div>
+              <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                <img src="/assets/img/hajnal-trounstine-simulation/houston_2001_brown.webp" alt="Lee Brown"
+                  style="max-width: 100%; height: auto; display: block; margin: 0;">
+                <div>Lee Brown</div>
+              </div>
+              <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                <img src="/assets/img/hajnal-trounstine-simulation/houston_2001_sanchez.webp" alt="Orlando Sanchez"
+                  style="max-width: 100%; height: auto; display: block; margin: 0;">
+                <div>Orlando Sanchez</div>
+              </div>
+            </div>
+
+            <!-- Details about Houston case -->
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 1rem 0;">
+              <div style="font-size: 28px; text-align: left;">
+                <div class="fragment" data-fragment-index="2" style="margin-bottom: 0.5em;">Brown won by 2%</div>
+                <div class="fragment" data-fragment-index="3" style="margin-bottom: 0.5em;">Hispanic citizens...
+                  <div style="margin-left: 2em;">...turned out at very low rates</div>
+                </div>
+                <div class="fragment" data-fragment-index="4" style="margin-left: 2em; margin-bottom: 0.5em;">...about
+                  45% of eligible voters</div>
+                <div class="fragment" data-fragment-index="5" style="margin-left: 2em;">...preferred Sanchez to Brown by
+                  about 72%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 10: San Antonio Case -->
+      <section data-background-color="#2D2E35">
+        <div
+          style="display: flex; width: 960px; height: 700px; position: absolute; top: 0; left: 0; align-items: stretch;">
+          <!-- Left half: factors list -->
+          <div
+            style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 1rem 2rem; box-sizing: border-box;">
+            <div>
+              <div style="text-align: left; margin-bottom: 1rem; font-size: 36px">When uneven turnout matters:</div>
+              <ul class="checkbox-list" style="font-size: 28px; text-align: left;">
+                <li class="red-x">Close election</li>
+                <li class="checked">low-turnout group of citizens...</li>
+                <ul>
+                  <li class="checked">...is large</li>
+                  <li class="red-x">...heavily favors loser</li>
+                </ul>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Right half: San Antonio 2001 election details -->
+          <div
+            style="flex: 1; display: flex; flex-direction: column; align-items: stretch; padding: 2rem; box-sizing: border-box;">
+            <!-- Column headers -->
+            <div style="padding: 0.25rem; display: flex; gap: 0.25rem; align-items: center; font-size: small;">
+              <div style="flex: 1;"></div>
+              <div style="flex: 1; text-align: center; font-weight: bold;">Actual Winner</div>
+              <div style="flex: 1; text-align: center; font-weight: bold;">Simulated Winner</div>
+            </div>
+
+            <!-- San Antonio 2001 election entry -->
+            <div
+              style="padding: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; gap: 0.25rem; align-items: center; font-size: small;">
+              <div style="flex: 1; font-size: medium;">
+                <strong>San Antonio<br />2001</strong>
+              </div>
+              <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                <img src="/assets/img/hajnal-trounstine-simulation/sanantonio_2001_garza.webp" alt="Ed Garza"
+                  style="max-width: 100%; height: auto; display: block; margin: 0;">
+                <div>Ed Garza</div>
+              </div>
+              <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                <img src="/assets/img/hajnal-trounstine-simulation/sanantonio_2001_garza.webp" alt="Ed Garza"
+                  style="max-width: 100%; height: auto; display: block; margin: 0;">
+                <div>Ed Garza</div>
+              </div>
+            </div>
+
+            <!-- Details about San Antonio case -->
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 1rem 0;">
+              <div style="font-size: 28px; text-align: left;">
+                <div style="margin-bottom: 0.5em;">Garza won by 10%</div>
+                <div style="margin-bottom: 0.5em;">Hispanic citizens...
+                  <div style="margin-left: 2em;">...turned out at very low rates</div>
+                </div>
+                <div style="margin-left: 2em; margin-bottom: 0.5em;">...about
+                  63% of eligible voters</div>
+                <div style="margin-left: 2em;">...preferred Garza to his
+                  opponent by
+                  about %96</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+
+
+  <!-- RevealJS scripts -->
+  <script type="module">
+    import Reveal from '../../node_modules/reveal.js/dist/reveal.esm.js';
+    import RevealHighlight from '../../node_modules/reveal.js/plugin/highlight/highlight.esm.js';
+    import RevealNotes from '../../node_modules/reveal.js/plugin/notes/notes.esm.js';
+
+    // Initialize RevealJS
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      transition: 'slide',
+      plugins: [RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>
