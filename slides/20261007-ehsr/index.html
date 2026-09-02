@@ -20,6 +20,39 @@
     ul.spaced-list>li:not(:last-child) {
       margin-bottom: 0.75em;
     }
+
+    /* Keep overlay fragments anchored to slide content area */
+    .slide-overlay-anchor {
+      position: relative;
+      width: 960px;
+      height: 700px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-overlay-anchor>img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .slide-image-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #ffffff;
+      font-size: 1.8rem;
+      line-height: 1.25;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 2;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
   </style>
 </head>
 
@@ -28,8 +61,21 @@
     <div class="slides">
 
       <!-- Title Slide -->
+      <section data-background-color="#2D2E35" style="position: relative;">
+        <div class="slide-overlay-anchor">
+          <img src="/assets/img/logo_dem_center.webp" width="2000px" alt="Logo" class="no-border">
+        </div>
+      </section>
       <section data-background-color="#2D2E35">
-        <img src="/assets/img/logo_dem_center.webp" width="2000px" alt="Logo" class="no-border">
+        <img src="/assets/img/20261007-ehsr/Feelings_by_Morris_Albert_French_vinyl_artwork.jpg" width="600px"
+          alt="Cover art for the 1974 album 'Feelings' by Morris Albert French" class="no-border">
+        <div class="fragment fade-in slide-image-overlay"
+          style="font-size: xxx-large; font-weight: 800; transform: rotate(-0deg);">
+          <div>
+            <div>Feelings?</div>
+            <div>Nothing more than Feelings?</div>
+          </div>
+        </div>
       </section>
       <section data-background-color="#2D2E35">
         <h1>Partisan Hostility</h1>
@@ -39,11 +85,11 @@
         </ul>
       </section>
       <section data-background-color="#2D2E35">
-        <h2>Wait...<em>What's Democracy?</em></h1>
-          <ul>
-            <li>"Thick" (outcome-based) definition</li>
-            <li>"Thin" (procedural) definition</li>
-          </ul>
+        <h2>Wait...<em>What's Democracy?</em></h2>
+        <ul>
+          <li>"Thick" (outcome-based) definition</li>
+          <li>"Thin" (procedural) definition</li>
+        </ul>
       </section>
     </div>
   </div>
