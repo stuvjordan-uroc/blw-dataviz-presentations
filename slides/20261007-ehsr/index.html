@@ -20,79 +20,79 @@
     ul.spaced-list>li:not(:last-child) {
       margin-bottom: 0.75em;
     }
-
-    /* Keep overlay fragments anchored to slide content area */
-    .slide-overlay-anchor {
-      position: relative;
-      width: 960px;
-      height: 700px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .slide-overlay-anchor>img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .slide-image-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #ffffff;
-      font-size: 1.8rem;
-      line-height: 1.25;
-      background: rgba(0, 0, 0, 0.65);
-      z-index: 2;
-      padding: 2rem;
-      box-sizing: border-box;
-    }
   </style>
 </head>
 
 <body>
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position: absolute;">
+    <defs>
+      <path id="maple-leaf" fill="#f00"
+        d="m-90 2030 45-863a95 95 0 0 0-111-98l-859 151 116-320a65 65 0 0 0-20-73l-941-762 212-99a65 65 0 0 0 34-79l-186-572 542 115a65 65 0 0 0 73-38l105-247 423 454a65 65 0 0 0 111-57l-204-1052 327 189a65 65 0 0 0 91-27l332-652 332 652a65 65 0 0 0 91 27l327-189-204 1052a65 65 0 0 0 111 57l423-454 105 247a65 65 0 0 0 73 38l542-115-186 572a65 65 0 0 0 34 79l212 99-941 762a65 65 0 0 0-20 73l116 320-859-151a95 95 0 0 0-111 98l45 863z" />
+    </defs>
+  </svg>
+
   <div class="reveal">
     <div class="slides">
 
-      <!-- Title Slide -->
-      <section data-background-color="#2D2E35" style="position: relative;">
-        <div class="slide-overlay-anchor">
-          <img src="/assets/img/logo_dem_center.webp" width="2000px" alt="Logo" class="no-border">
-        </div>
-      </section>
       <section data-background-color="#2D2E35">
-        <img src="/assets/img/20261007-ehsr/Feelings_by_Morris_Albert_French_vinyl_artwork.jpg" width="600px"
-          alt="Cover art for the 1974 album 'Feelings' by Morris Albert French" class="no-border">
-        <div class="fragment fade-in slide-image-overlay"
-          style="font-size: xxx-large; font-weight: 800; transform: rotate(-0deg);">
-          <div>
-            <div>Feelings?</div>
-            <div>Nothing more than Feelings?</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; place-items: center; row-gap: 16px;">
+          <div style="grid-column: 1 / -1; display: flex; justify-content: center; align-items: center; width: 100%;">
+            <img src="/assets/img/logo_light_on_transparent.svg" width="600px" alt="Logo" class="no-border"
+              style="margin: 0; padding: 0;">
+          </div>
+          <p style="font-size: xx-large; justify-self: end; align-self: center; margin: 0; text-align: right;">Subscribe
+            to our mailing list:</p>
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="/assets/img/dem-center-contact/mailchimp_subscribe_form_QR.svg" width="200px"
+              alt="QR code pointing to http://eepurl.com/iau9tv" class="no-border" style="margin: 0; padding: 0;">
+            <p style="font-size: x-large; margin-top: 2px; margin-bottom: 0px;">bit.ly/dem-center-email-list</p>
+          </div>
+          <p style="font-size: xx-large; justify-self: end; align-self: center; margin: 0; text-align: right;">
+            Follow us
+            on instagram:</p>
+          <div style="display: flex; flex-direction: column; align-items: center; margin-top: 16px;">
+            <img src="/assets/img/dem-center-contact/instagram_profile_QR.svg" width="200px"
+              alt="QR code pointing to http://eepurl.com/iau9tv" class="no-border" style="margin: 0; padding: 0;">
+            <p style="font-size: x-large; margin-top: 2px; margin-bottom: 0px;">instagram.com/urocdemcenter</p>
           </div>
         </div>
       </section>
+
       <section data-background-color="#2D2E35">
-        <h1>Partisan Hostility</h1>
-        <ul>
-          <li>(How much) Does it threaten democracy in the U.S.?</li>
-          <li>(How) Can the threat be mitigated?</li>
-        </ul>
+        <div
+          style="width: 400px; height: 300px; background-color: black; border: 1px solid white; border-radius: 10px; display: flex; flex-direction: column; align-items: stretch; padding: 16px; box-sizing: border-box;">
+          <p
+            style="margin: 0; flex: 1 1 0; min-height: 0; display: flex; align-items: center; justify-content: center;">
+            Dear</p>
+          <div
+            style="display: flex; flex-direction: row; align-items: center; justify-content: center; flex: 1 1 0; min-height: 0;">
+            <div>
+              <svg width="64" height="64" viewBox="-2015 -2000 4030 4030" aria-hidden="true"
+                style="transform: rotate(-15deg); transform-origin: center;">
+                <use href="#maple-leaf"></use>
+              </svg>
+            </div>
+            <div>Canada:</div>
+            <div>
+              <svg width="64" height="64" viewBox="-2015 -2000 4030 4030" aria-hidden="true"
+                style="transform: rotate(15deg); transform-origin: center;">
+                <use href="#maple-leaf"></use>
+              </svg>
+            </div>
+          </div>
+          <div style="flex: 1 1 0; min-height: 0; display: flex; align-items: center; justify-content: center;">We hate
+          </div>
+          <div style="flex: 1 1 0; min-height: 0; display: flex; align-items: center; justify-content: center;">him too.
+          </div>
+        </div>
       </section>
-      <section data-background-color="#2D2E35">
-        <h2>Wait...<em>What's Democracy?</em></h2>
-        <ul>
-          <li>"Thick" (outcome-based) definition</li>
-          <li>"Thin" (procedural) definition</li>
-        </ul>
-      </section>
+
+
     </div>
   </div>
+
+
+
 
   <!-- RevealJS scripts -->
   <script type="module">
@@ -108,6 +108,9 @@
       plugins: [RevealHighlight, RevealNotes]
     });
   </script>
+
+
+
 </body>
 
 </html>
