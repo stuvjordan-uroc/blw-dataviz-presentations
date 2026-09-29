@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+
+  <!-- RevealJS core CSS -->
+  <link rel="stylesheet" href="../../node_modules/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="../../node_modules/reveal.js/dist/theme/white.css" id="theme">
+
+  <!-- Shared custom styles -->
+  <link rel="stylesheet" href="../../shared/styles/theme.css">
+  <link rel="stylesheet" href="../../shared/styles/common.css">
+
+  <!-- Presentation-specific styles -->
+  <style>
+    /* Utility class for lists with spacing between items */
+    ul.spaced-list>li:not(:last-child) {
+      margin-bottom: 0.75em;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="reveal">
+    <div class="slides">
+
+      <section data-background-color="#2D2E35" style="position: relative;">
+        <div
+          style="position: absolute; top: 0; left: 0; width: 960px; height: 700px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-template-rows: 200px 20px 1fr; align-items: start; justify-items: stretch; row-gap: 4px; column-gap: 40px; z-index: 1;">
+          <svg width="100%" height="200" viewBox="0 0 160 200" aria-hidden="true">
+            <rect x="1" y="21" width="158" height="158" fill="none" stroke="#FFFFFF" stroke-width="2" />
+          </svg>
+          <svg width="100%" height="200" viewBox="0 0 160 200" aria-hidden="true">
+            <rect x="1" y="21" width="158" height="158" fill="none" stroke="#FFFFFF" stroke-width="2" />
+          </svg>
+          <svg width="100%" height="200" viewBox="0 0 160 200" aria-hidden="true">
+            <rect x="1" y="21" width="158" height="158" fill="none" stroke="#FFFFFF" stroke-width="2" />
+          </svg>
+          <svg width="100%" height="200" viewBox="0 0 160 200" aria-hidden="true">
+            <rect x="1" y="21" width="158" height="158" fill="none" stroke="#FFFFFF" stroke-width="2" />
+          </svg>
+          <svg width="100%" height="200" viewBox="0 0 160 200" aria-hidden="true">
+            <rect x="1" y="21" width="158" height="158" fill="none" stroke="#FFFFFF" stroke-width="2" />
+          </svg>
+          <svg width="100%" height="200" viewBox="0 0 160 200" aria-hidden="true">
+            <rect x="1" y="21" width="158" height="158" fill="none" stroke="#FFFFFF" stroke-width="2" />
+          </svg>
+          <p style="margin: 0; align-self: center; justify-self: center; font-size: x-large">voter registration</p>
+          <p style="margin: 0; align-self: center; justify-self: center; font-size: x-large">identity verification</p>
+          <p style="margin: 0; align-self: center; justify-self: center; font-size: x-large">machine tally</p>
+          <p style="margin: 0; align-self: center; justify-self: center; font-size: x-large">canvas</p>
+          <p style="margin: 0; align-self: center; justify-self: center; font-size: x-large">audit</p>
+          <p style="margin: 0; align-self: center; justify-self: center; font-size: x-large">certification</p>
+          <p style="font-size: large; text-align: left; padding-top: 0.5em;">
+            Persons who want to vote apply to be registered. Election administrators check eligibility of persons who
+            apply to be registered and register those eligible. Identifying information (such as address, signature,
+            photo, etc. stored) for each registered voter.
+          </p>
+          <p style="font-size: large; text-align: left; padding-top: 0.5em;">
+            Persons who want to cast votes show up at the polling place. Election admins check identity of each person
+            who shows up against registration records. Persons confirmed to be registered are allowed to vote. Election
+            admins track which registered voters have voted, to prevent any one from voting more than once.
+          </p>
+        </div>
+        <svg viewBox="0 0 960 700" width="960" height="700" aria-hidden="true"
+          style="position: absolute; top: 0; left: 0; width: 960px; height: 700px; z-index: 2; pointer-events: none; overflow: visible;">
+          <defs>
+            <g id="process-arrow">
+              <path d="M0 0 H72" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="butt"
+                vector-effect="non-scaling-stroke" />
+              <path d="M72 -6 L80 0 L72 6 Z" fill="#FFFFFF" />
+            </g>
+          </defs>
+
+          <!-- Between stage 1 and 2 -->
+          <use href="#process-arrow" x="106.67" y="100" />
+          <!-- Between stage 2 and 3 -->
+          <use href="#process-arrow" x="273.33" y="100" />
+          <!-- Between stage 3 and 4 -->
+          <use href="#process-arrow" x="440" y="100" />
+          <!-- Between stage 4 and 5 -->
+          <use href="#process-arrow" x="606.67" y="100" />
+          <!-- Between stage 5 and 6 -->
+          <use href="#process-arrow" x="773.33" y="100" />
+        </svg>
+      </section>
+    </div>
+  </div>
+
+  <!-- RevealJS scripts -->
+  <script type="module">
+    import Reveal from '../../node_modules/reveal.js/dist/reveal.esm.js';
+    import RevealHighlight from '../../node_modules/reveal.js/plugin/highlight/highlight.esm.js';
+    import RevealNotes from '../../node_modules/reveal.js/plugin/notes/notes.esm.js';
+
+    // Initialize RevealJS
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      transition: 'slide',
+      plugins: [RevealHighlight, RevealNotes]
+    });
+  </script>
+
+</body>
+
+</html>
