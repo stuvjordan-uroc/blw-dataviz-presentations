@@ -352,6 +352,96 @@
         </div>
       </section>
 
+      <!--Covid behaviors over time -- groups revealed incrementally by partisan animus-->
+      <section data-background-color="#2D2E35" style="position: relative;">
+        <div style="position:absolute;top:18px;left:22px;z-index:20;color:#ffffff;font-size:18px;line-height:1.5;text-align:left;pointer-events:none;padding:8px 10px;border:1px solid rgba(255,255,255,0.85);background:rgba(60,63,72,0.85);border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.2);">
+          <div>☺️ = low animus</div>
+          <div>😠 = high animus</div>
+        </div>
+        <div style="display:flex;gap:24px;padding:20px;box-sizing:border-box;width:960px;height:700px;position:relative;z-index:1;">
+          <svg id="cv-mask" width="448" height="660"></svg>
+          <svg id="cv-dist" width="448" height="660"></svg>
+        </div>
+        <script>
+          (function () {
+            const waves = ["Wave 2 (Apr 2020)", "Wave 3 (Oct 2020)", "Wave 4 (Apr 2021)"];
+            const waveLabels = [["Wave 2", "(Apr 2020)"], ["Wave 3", "(Oct 2020)"], ["Wave 4", "(Apr 2021)"]];
+            const groups = {
+              demLow:  { mask: [45.22, 91.93, 87.36], dist: [81.09, 79.17, 74.72], color: "#3b82f6", emoji: "☺️" },
+              demHigh: { mask: [54.35, 93.98, 93.41], dist: [91.74, 85.08, 85.67], color: "#3b82f6", emoji: "😠" },
+              repLow:  { mask: [41.27, 90.29, 88.89], dist: [83.73, 73.79, 69.84], color: "#ef4444", emoji: "☺️" },
+              repHigh: { mask: [34.00, 79.41, 71.00], dist: [81.20, 66.18, 51.00], color: "#ef4444", emoji: "😠" }
+            };
+            // Reveal order: low-animus Dem → low-animus Rep → high-animus Dem → high-animus Rep.
+            // Shared fragment indices across both charts so both charts advance in lockstep.
+            const revealOrder = [
+              { key: "demLow",  fragmentIndex: 0 },
+              { key: "repLow",  fragmentIndex: 1 },
+              { key: "demHigh", fragmentIndex: 2 },
+              { key: "repHigh", fragmentIndex: 3 }
+            ];
+            function drawMarker(parent, cx, cy, color, emoji) {
+              const m = parent.append("g").attr("transform", `translate(${cx},${cy})`);
+              m.append("circle").attr("r", 14).attr("fill", color);
+              m.append("text")
+                .attr("text-anchor", "middle")
+                .attr("dominant-baseline", "central")
+                .attr("font-size", "18")
+                .text(emoji);
+            }
+            function drawChart(id, behavior, title) {
+              const svg = d3.select("#" + id);
+              const W = +svg.attr("width"), H = +svg.attr("height");
+              const m = { t: 40, r: 22, b: 72, l: 54 };
+              const iW = W - m.l - m.r, iH = H - m.t - m.b;
+              const g = svg.append("g").attr("transform", `translate(${m.l},${m.t})`);
+              const x = d3.scalePoint().domain(waves).range([0, iW]).padding(0.4);
+              const y = d3.scaleLinear().domain([0, 100]).range([iH, 0]);
+              // horizontal gridlines
+              g.append("g")
+                .call(d3.axisLeft(y).ticks(5).tickSize(-iW).tickFormat(""))
+                .call(a => { a.select(".domain").remove(); a.selectAll(".tick line").attr("stroke", "#444").attr("stroke-dasharray", "3,3"); });
+              // y axis labels
+              g.append("g")
+                .call(d3.axisLeft(y).ticks(5))
+                .call(a => { a.select(".domain").remove(); a.selectAll(".tick line").remove(); a.selectAll("text").attr("fill", "#ddd").attr("font-size", "12"); });
+              // x axis baseline
+              g.append("line").attr("x1", 0).attr("x2", iW).attr("y1", iH).attr("y2", iH)
+                .attr("stroke", "#666").attr("stroke-width", 1);
+              // x tick labels (two lines each)
+              waveLabels.forEach(([l1, l2], i) => {
+                const xp = x(waves[i]);
+                const tg = g.append("g").attr("transform", `translate(${xp},${iH + 8})`);
+                tg.append("text").attr("text-anchor", "middle").attr("fill", "#fff").attr("font-size", "12").attr("y", 14).text(l1);
+                tg.append("text").attr("text-anchor", "middle").attr("fill", "#999").attr("font-size", "11").attr("y", 28).text(l2);
+              });
+              // chart title
+              g.append("text").attr("x", iW / 2).attr("y", -16)
+                .attr("text-anchor", "middle").attr("fill", "#fff").attr("font-size", "14").attr("font-weight", "bold")
+                .text(title);
+              // y axis label
+              g.append("text").attr("transform", "rotate(-90)").attr("x", -iH / 2).attr("y", -38)
+                .attr("text-anchor", "middle").attr("fill", "#888").attr("font-size", "11")
+                .text("Percent (%)");
+              const lineGen = d3.line().x((_, i) => x(waves[i])).y(d => y(d));
+              // Each group wrapped in a <g class="fragment"> so RevealJS controls visibility
+              revealOrder.forEach(({ key, fragmentIndex }) => {
+                const grp = groups[key];
+                const vals = grp[behavior];
+                const frag = g.append("g")
+                  .attr("class", "fragment")
+                  .attr("data-fragment-index", fragmentIndex);
+                frag.append("path").datum(vals)
+                  .attr("fill", "none").attr("stroke", grp.color).attr("stroke-width", 2.5)
+                  .attr("stroke-linejoin", "round").attr("d", lineGen);
+                vals.forEach((v, i) => drawMarker(frag, x(waves[i]), y(v), grp.color, grp.emoji));
+              });
+            }
+            drawChart("cv-mask", "mask", "Mask Wearing");
+            drawChart("cv-dist", "dist", "6-ft Social Distancing");
+          }());
+        </script>
+      </section>
 
     </div>
   </div>
