@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+
+  <!-- RevealJS core CSS -->
+  <link rel="stylesheet" href="../../node_modules/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="../../node_modules/reveal.js/dist/theme/white.css" id="theme">
+
+  <!-- Shared custom styles -->
+  <link rel="stylesheet" href="../../shared/styles/theme.css">
+  <link rel="stylesheet" href="../../shared/styles/common.css">
+
+  <!-- Presentation-specific styles -->
+  <style>
+    /* Utility class for lists with spacing between items */
+    ul.spaced-list>li:not(:last-child) {
+      margin-bottom: 0.75em;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+</head>
+
+<body>
+
+  <div class="reveal">
+    <div class="slides">
+      <!--hot-rich-man-bimbo-->
+      <!--text labels: "hot" "rich" "man-bimbo"-->
+      <section data-background-color="#2D2E35">
+        <div
+          style="width: 960px; height: 700px; margin: 0 auto; display: flex; align-items: center; justify-content: center;">
+          <svg id="hot-rich-man-bimbo-svg" width="960" height="700" viewBox="0 0 960 700"></svg>
+        </div>
+      </section>
+
+      <!--diagnostic-->
+      <section data-background-color="#2D2E35">
+        <h4>Are <em>you</em> a hot, rich, man-bimbo?</h4>
+        <ul style="font-size: xx-large; list-style-type: '☐ ';">
+          <li class="fragment">Do you have lustrous, strawberry-blond sideburns?</li>
+          <li class="fragment">Can you somehow afford a beautifully furnished apartment, even though you are a legal aid
+            lawyer and your
+            spouse
+            is a full time artist?</li>
+          <li class="fragment">When you hold forth on important issues of racial and economic justice, do people stare
+            at you with lust in
+            their eyes?</li>
+          <li class="fragment">Did you go to Stanford?</li>
+          <li class="fragment">Do you express your dissatisfaction with electoral politics by saying things like "Our
+            lives are more and
+            more determined by forces that overwhelm the individual."</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+
+  <!-- RevealJS scripts -->
+  <script type="module">
+    import Reveal from '../../node_modules/reveal.js/dist/reveal.esm.js';
+    import RevealHighlight from '../../node_modules/reveal.js/plugin/highlight/highlight.esm.js';
+    import RevealNotes from '../../node_modules/reveal.js/plugin/notes/notes.esm.js';
+
+    const HOT_RICH_MAN_BIMBO_CONFIG = {
+      fontSize: 52,
+      innerRadius: 200,
+      width: 960,
+      height: 700,
+      labels: [
+        { text: "hot", startOffsetPct: 8 },
+        { text: "rich", startOffsetPct: 36 },
+        { text: "man-bimbo", startOffsetPct: 66 }
+      ]
+    };
+
+    function buildCirclePathD(cx, cy, radius) {
+      return `M ${cx},${cy} m -${radius},0 a ${radius},${radius} 0 1,1 ${radius * 2},0 a ${radius},${radius} 0 1,1 -${radius * 2},0`;
+    }
+
+    function renderHotRichManBimbo() {
+      const config = HOT_RICH_MAN_BIMBO_CONFIG;
+      const svg = d3.select("#hot-rich-man-bimbo-svg");
+      if (svg.empty()) {
+        return;
+      }
+
+      svg.selectAll("*").remove();
+
+      const cx = config.width / 2;
+      const cy = config.height / 2;
+      const strokeWidth = Math.max(2, config.fontSize * 0.06);
+      const markerId = "hot-rich-man-bimbo-arrowhead";
+      const labelPathId = "hot-rich-man-bimbo-label-ring";
+
+      const defs = svg.append("defs");
+
+      defs.append("path")
+        .attr("id", labelPathId)
+        .attr("d", buildCirclePathD(cx, cy, config.innerRadius));
+
+      defs.append("marker")
+        .attr("id", markerId)
+        .attr("viewBox", "0 0 10 10")
+        .attr("refX", 8)
+        .attr("refY", 5)
+        .attr("markerWidth", Math.max(6, config.fontSize * 0.22))
+        .attr("markerHeight", Math.max(6, config.fontSize * 0.22))
+        .attr("orient", "auto")
+        .append("path")
+        .attr("d", "M 0 0 L 10 5 L 0 10 z")
+        .attr("fill", "#ffffff");
+
+      //svg.append("circle")
+      //  .attr("cx", cx)
+      //  .attr("cy", cy)
+      //  .attr("r", config.innerRadius)
+      //  .attr("stroke", "#ffffff")
+      //  .attr("stroke-width", 1.5)
+      //  .attr("fill", "none");
+
+      const labelGroup = svg.append("g").attr("id", "hot-rich-man-bimbo-labels");
+      const arrowGroup = svg.append("g").attr("id", "hot-rich-man-bimbo-arrows");
+
+      const labelSelections = labelGroup.selectAll("text.hot-rich-man-bimbo-label")
+        .data(config.labels)
+        .join("text")
+        .attr("class", "hot-rich-man-bimbo-label")
+        .attr("fill", "#ffffff")
+        .attr("font-size", `${config.fontSize}px`)
+        .attr("font-family", "Inter, sans-serif");
+
+      labelSelections.append("textPath")
+        .attr("href", `#${labelPathId}`)
+        .attr("startOffset", label => `${label.startOffsetPct}%`)
+        .attr("text-anchor", "middle")
+        .text(label => label.text);
+
+      const labelPathNode = defs.select(`#${labelPathId}`).node();
+      if (!labelPathNode) {
+        return;
+      }
+      const ringLength = labelPathNode.getTotalLength();
+      const normalizeLength = (lengthValue) => {
+        return ((lengthValue % ringLength) + ringLength) % ringLength;
+      };
+
+      const pointAtPathLength = (lengthValue) => {
+        return labelPathNode.getPointAtLength(normalizeLength(lengthValue));
+      };
+
+      const pointAtRadius = (lengthValue, radius) => {
+        const innerPoint = pointAtPathLength(lengthValue);
+        const radialDx = innerPoint.x - cx;
+        const radialDy = innerPoint.y - cy;
+        const radialLength = Math.hypot(radialDx, radialDy) || 1;
+        return {
+          x: cx + (radialDx / radialLength) * radius,
+          y: cy + (radialDy / radialLength) * radius
+        };
+      };
+
+      const labelMetrics = [];
+      labelSelections.each(function (label, index) {
+        const textPathNode = this.querySelector("textPath");
+        if (!textPathNode) {
+          return;
+        }
+
+        const startLength = (label.startOffsetPct / 100) * ringLength;
+        const textLength = textPathNode.getComputedTextLength();
+        const textStartLength = startLength - textLength / 2;
+        const textEndLength = startLength + textLength / 2;
+
+        const charCount = textPathNode.textContent?.length ?? 0;
+        const charCenterRadii = [];
+
+        for (let charIndex = 0; charIndex < charCount; charIndex += 1) {
+          let charExtent;
+          try {
+            charExtent = this.getExtentOfChar(charIndex);
+          } catch (error) {
+            console.warn("Unable to read character extent for curved label", {
+              labelText: label.text,
+              charIndex,
+              error
+            });
+            continue;
+          }
+          if (!charExtent) {
+            continue;
+          }
+
+          const charCenter = {
+            x: charExtent.x + charExtent.width / 2,
+            y: charExtent.y + charExtent.height / 2
+          };
+
+          const radialDx = charCenter.x - cx;
+          const radialDy = charCenter.y - cy;
+          const radialLength = Math.hypot(radialDx, radialDy) || 1;
+          charCenterRadii.push(radialLength);
+
+        }
+
+        const glyphCenterlineRadius = (d3.mean(charCenterRadii) ?? config.innerRadius);
+
+        labelMetrics.push({
+          index,
+          textStartLength,
+          textEndLength,
+          glyphCenterlineRadius
+        });
+      });
+
+      const maxGlyphCenterlineRadius = d3.max(labelMetrics, (metric) => metric.glyphCenterlineRadius) ?? config.innerRadius;
+      const arrowClearanceFromCenterline = Math.max(1, config.fontSize * 0.03);
+      const arrowRadius = maxGlyphCenterlineRadius + arrowClearanceFromCenterline;
+      const arrowLabelGapPx = 4;
+
+      const buildArrowPath = (fromLength, toLength, sourceAnchor) => {
+        let forwardDelta = toLength - fromLength;
+        while (forwardDelta <= 0) {
+          forwardDelta += ringLength;
+        }
+
+        const stepCount = Math.max(12, Math.ceil(forwardDelta / 20));
+        const arcPoints = d3.range(stepCount + 1).map((stepIndex) => {
+          const progress = stepIndex / stepCount;
+          return pointAtRadius(fromLength + progress * forwardDelta, arrowRadius);
+        });
+
+        const sourceOuter = arcPoints[0];
+        const targetOuter = arcPoints[arcPoints.length - 1];
+        const arcSegment = arcPoints.slice(1, -1)
+          .map((point) => `L ${point.x} ${point.y}`)
+          .join(" ");
+
+        return `M ${sourceAnchor.x} ${sourceAnchor.y} L ${sourceOuter.x} ${sourceOuter.y} ${arcSegment} L ${targetOuter.x} ${targetOuter.y}`;
+      };
+
+      const arrowData = labelMetrics.map((metric, index) => {
+        const nextMetric = labelMetrics[(index + 1) % labelMetrics.length];
+        const arrowStartLength = metric.textEndLength + arrowLabelGapPx;
+        const arrowEndLength = nextMetric.textStartLength - arrowLabelGapPx;
+        const sourceAnchor = pointAtRadius(arrowStartLength, metric.glyphCenterlineRadius);
+        return buildArrowPath(arrowStartLength, arrowEndLength, sourceAnchor);
+      });
+
+      arrowGroup.selectAll("path.hot-rich-man-bimbo-arrow")
+        .data(arrowData)
+        .join("path")
+        .attr("class", "hot-rich-man-bimbo-arrow")
+        .attr("d", arrowPath => arrowPath)
+        .attr("fill", "none")
+        .attr("stroke", "#ffffff")
+        .attr("stroke-width", strokeWidth)
+        .attr("stroke-linecap", "round")
+        .attr("stroke-linejoin", "round")
+        .attr("marker-end", `url(#${markerId})`);
+    }
+
+    function renderHotRichManBimboWhenFontsReady() {
+      if (document.fonts?.ready) {
+        document.fonts.ready.then(() => renderHotRichManBimbo());
+      } else {
+        renderHotRichManBimbo();
+      }
+    }
+
+    // Initialize RevealJS
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      transition: 'slide',
+      plugins: [RevealHighlight, RevealNotes]
+    });
+
+    Reveal.on("ready", renderHotRichManBimboWhenFontsReady);
+    Reveal.on("slidechanged", renderHotRichManBimboWhenFontsReady);
+    window.addEventListener("resize", renderHotRichManBimboWhenFontsReady);
+  </script>
+</body>

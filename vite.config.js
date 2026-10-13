@@ -23,6 +23,10 @@ export default defineConfig({
           __dirname,
           "slides/dem-center-contact/index.html",
         ),
+        "slides/20261015-candidate": resolve(
+          __dirname,
+          "slides/20261015-candidate/index.html",
+        ),
         // Add new presentations here as you create them
       },
     },
