@@ -55,6 +55,31 @@
             more determined by forces that overwhelm the individual."</li>
         </ul>
       </section>
+
+      <section data-background-color="#2D2E35">
+        <p style="text-align: left; font-style: italic; font-size: xx-large;">
+          This is where my experience with McCarthy came into it: I would write a speech, hear McCarthy deliver my words
+          as part of his stump speech, and see the response he got from it. He'd say things that enabled people to cheer
+          themselves by cheering him. I thought a campaign was like drifting downriver on a raft, where everything is
+          beautiful: then you begin to hear the roar of the falls up ahead, but it's too late. You go over the falls,
+          you lose yourself, you become eternally confused by the difference between yourself and who your public thinks
+          you are. And it's a disarming, dissociative experience. And Redford played that very well: the better McKay
+          gets at campaigning, the more he loses himself.
+        </p>
+        <p style="text-align: right; font-size: x-large;">Jeremy Larner (scriptwriter for The Candidate) in an interview
+          published in Brooklyn Magazine.</p>
+      </section>
+
+      <section data-background-color="#2D2E35">
+        <ul style="font-size: xx-large;">
+          <li>What exactly is it that McKay (at the beginning of the film) believes to be true about electoral democracy
+            that the filmmakers portray as false?</li>
+          <li style="margin-top: 0.5em">Are the filmmakers correct? I.e. Is McKay's belief about electoral democracy in
+            fact false?</li>
+        </ul>
+
+      </section>
+
     </div>
   </div>
 
@@ -69,6 +94,11 @@
       innerRadius: 200,
       width: 960,
       height: 700,
+      centerImage: {
+        src: `${import.meta.env.BASE_URL}assets/img/20261015-candidate/redford.jpg`,
+        width: 200,
+        height: 200 * 331 / 296
+      },
       labels: [
         { text: "hot", startOffsetPct: 8 },
         { text: "rich", startOffsetPct: 36 },
@@ -120,6 +150,13 @@
       //  .attr("stroke", "#ffffff")
       //  .attr("stroke-width", 1.5)
       //  .attr("fill", "none");
+
+      //svg.append("image")
+      //  .attr("href", config.centerImage.src)
+      //  .attr("x", cx - config.centerImage.width / 2)
+      //  .attr("y", cy - config.centerImage.height / 2)
+      //  .attr("width", config.centerImage.width)
+      //  .attr("height", config.centerImage.height);
 
       const labelGroup = svg.append("g").attr("id", "hot-rich-man-bimbo-labels");
       const arrowGroup = svg.append("g").attr("id", "hot-rich-man-bimbo-arrows");
