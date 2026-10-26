@@ -27,6 +27,10 @@ export default defineConfig({
           __dirname,
           "slides/20261015-candidate/index.html",
         ),
+        "slides/20261029-sas-natl-council": resolve(
+          __dirname,
+          "slides/20261029-sas-natl-council/index.html",
+        ),
         // Add new presentations here as you create them
       },
     },

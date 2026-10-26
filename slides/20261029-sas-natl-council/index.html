@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+
+  <!-- RevealJS core CSS -->
+  <link rel="stylesheet" href="../../node_modules/reveal.js/dist/reveal.css">
+  <!--<link rel="stylesheet" href="../../node_modules/reveal.js/dist/theme/white.css" id="theme"> -->
+
+  <!-- Shared custom styles -->
+  <link rel="stylesheet" href="../../shared/styles/theme.css">
+  <link rel="stylesheet" href="../../shared/styles/common.css">
+  <link rel="stylesheet" href="../../shared/styles/reset.css">
+
+  <!-- Presentation-specific styles -->
+  <style>
+    /* Utility class for lists with spacing between items */
+    ul.spaced-list>li:not(:last-child) {
+      margin-bottom: 0.75em;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+</head>
+
+<body>
+
+  <div class="reveal">
+    <div class="slides">
+      <!--logo and contact-->
+      <section data-background-color="#FFFFFF">
+        <div
+          style="position: absolute; top: 0; left: 0; width: 960px; height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+          <img src="/assets/img/logo_dark_on_transparent.svg" width="800px" alt="Democracy Center logo">
+          <img src="/assets/img/dem-center-contact/mailchimp_subscribe_form_QR.svg" width="350px">
+          <p style="font-size: xx-large;">Join our mailing list by scanning this QR code!</p>
+        </div>
+      </section>
+
+      <!--research community overview-->
+      <section data-background-color="#001E5F" style="position: relative;">
+        <div
+          style="position: absolute; top: 0; left: 0; width: 960px; height: 700px; display: flex; flex-direction: row; align-items: center; justify-content: stretch; background-color: #001E5F;">
+          <div style="width: 50%; height: 700px; display: flex; align-items: center; justify-content: center;">
+            <p style="color: #FFFFFF; font-size: xx-large;">Research Community</p>
+          </div>
+          <div style="width: 50%; height: 700px; display: flex; align-items: center; justify-content: center;">
+            <img src="/assets/img/20261029-sas-natl-council/research_community_01.jpg" width="400px" />
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- RevealJS scripts -->
+  <script type="module">
+    import Reveal from '../../node_modules/reveal.js/dist/reveal.esm.js';
+    import RevealHighlight from '../../node_modules/reveal.js/plugin/highlight/highlight.esm.js';
+    import RevealNotes from '../../node_modules/reveal.js/plugin/notes/notes.esm.js';
+
+    // Initialize RevealJS
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      transition: 'slide',
+      plugins: [RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>
