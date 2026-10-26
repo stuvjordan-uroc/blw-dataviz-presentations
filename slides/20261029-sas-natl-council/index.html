@@ -21,6 +21,11 @@
     ul.spaced-list>li:not(:last-child) {
       margin-bottom: 0.75em;
     }
+
+    html.reveal-print .research-community-copy>p,
+    html.reveal-print .research-community-copy>ul {
+      grid-area: auto !important;
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 </head>
@@ -46,7 +51,8 @@
       <section data-background-color="#001E5F" style="position: relative;">
         <div
           style="position: absolute; top: 0; left: 0; width: 960px; height: 700px; display: flex; flex-direction: row; align-items: center; justify-content: stretch; background-color: #001E5F;">
-          <div style="width: 50%; height: 700px; display: grid; place-items: center; padding-right: 40px">
+          <div class="research-community-copy"
+            style="width: 50%; height: 700px; display: grid; place-items: center; padding-right: 40px">
             <p class="fragment fade-out" data-fragment-index="1"
               style="grid-area: 1 / 1; color: #FFFFFF; font-size: xx-large;">
               Research Community
@@ -60,7 +66,8 @@
             </ul>
           </div>
           <div style="width: 60%; height: 700px; display: flex; align-items: center; justify-content: center;">
-            <img src="/assets/img/20261029-sas-natl-council/research_community_04_01.jpg" width="100%" />
+            <img src="/assets/img/20261029-sas-natl-council/research_community_04_01.jpg"
+              style="width: 100%; height: 700px; object-fit: contain;" />
           </div>
         </div>
       </section>
@@ -76,7 +83,8 @@
             </p>
           </div>
           <div style="width: 60%; height: 700px; display: flex; align-items: center; justify-content: center;">
-            <img src="/assets/img/20261029-sas-natl-council/public_student_programs_01.jpg" width="100%" />
+            <img src="/assets/img/20261029-sas-natl-council/public_student_programs_01.jpg"
+              style="width: 100%; height: 700px; object-fit: contain;" />
           </div>
         </div>
       </section>
@@ -133,6 +141,7 @@
       hash: true,
       slideNumber: true,
       transition: 'slide',
+      pdfSeparateFragments: false,
       plugins: [RevealHighlight, RevealNotes]
     });
   </script>
