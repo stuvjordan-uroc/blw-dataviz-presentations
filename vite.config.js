@@ -31,6 +31,10 @@ export default defineConfig({
           __dirname,
           "slides/20261029-sas-natl-council/index.html",
         ),
+        "slides/20261110-midterms-panel": resolve(
+          __dirname,
+          "slides/20261110-midterms-panel/index.html",
+        ),
         // Add new presentations here as you create them
       },
     },

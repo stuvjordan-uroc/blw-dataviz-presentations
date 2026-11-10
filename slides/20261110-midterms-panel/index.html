@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+
+  <!-- RevealJS core CSS -->
+  <link rel="stylesheet" href="../../node_modules/reveal.js/dist/reveal.css">
+  <!--<link rel="stylesheet" href="../../node_modules/reveal.js/dist/theme/white.css" id="theme"> -->
+
+  <!-- Shared custom styles -->
+  <link rel="stylesheet" href="../../shared/styles/theme.css">
+  <link rel="stylesheet" href="../../shared/styles/common.css">
+  <link rel="stylesheet" href="../../shared/styles/reset.css">
+
+  <!-- Presentation-specific styles -->
+  <style>
+    /* Utility class for lists with spacing between items */
+    ul.spaced-list>li:not(:last-child) {
+      margin-bottom: 0.75em;
+    }
+
+    html.reveal-print .research-community-copy>p,
+    html.reveal-print .research-community-copy>ul {
+      grid-area: auto !important;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+</head>
+
+<body>
+
+  <div class="reveal">
+    <div class="slides">
+      <!--logo and contact-->
+      <section data-background-color="#2D2E35">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; place-items: center; row-gap: 16px; color: #ffffff">
+          <div style="grid-column: 1 / -1; display: flex; justify-content: center; align-items: center; width: 100%;">
+            <img src="/assets/img/logo_light_on_transparent.svg" width="600px" alt="Logo" class="no-border"
+              style="margin: 0; padding: 0;">
+          </div>
+          <p style="font-size: xx-large; justify-self: end; align-self: center; margin: 0; text-align: right;">Subscribe
+            to our mailing list:</p>
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="/assets/img/dem-center-contact/mailchimp_subscribe_form_QR.svg" width="200px"
+              alt="QR code pointing to http://eepurl.com/iau9tv" class="no-border" style="margin: 0; padding: 0;">
+            <p style="font-size: x-large; margin-top: 2px; margin-bottom: 0px;">bit.ly/dem-center-email-list</p>
+          </div>
+          <p style="font-size: xx-large; justify-self: end; align-self: center; margin: 0; text-align: right;">
+            Follow us
+            on instagram:</p>
+          <div style="display: flex; flex-direction: column; align-items: center; margin-top: 16px;">
+            <img src="/assets/img/dem-center-contact/instagram_profile_QR.svg" width="200px"
+              alt="QR code pointing to http://eepurl.com/iau9tv" class="no-border" style="margin: 0; padding: 0;">
+            <p style="font-size: x-large; margin-top: 2px; margin-bottom: 0px;">instagram.com/urocdemcenter</p>
+          </div>
+        </div>
+      </section>
+
+      <!--viz scaffold-->
+      <section data-background-color="#2D2E35">
+        <div
+          style="position: absolute; top: 0; left: 0; width: 960px; height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+          <h3 style=" color: #ffffff;">State Govs Before the Midterms</h3>
+          <svg id="pre-election-control" width="900" height="600" viewBox="0 0 900 600" style="color: #ffffff">
+            <!--All D bucket-->
+            <rect data-democratic-count="3" width="180" height="450" stroke="#3874ff" stroke-width="5px" fill="none"
+              transform="translate(40, 50)" />
+            <foreignObject width="180" height="100" transform="translate(40, 505)">
+              <p xmlns="http://www.w3.org/1999/xhtml"
+                style="width: 180px; margin: 0; text-align: center; font-size: 20pt; line-height: 1;">
+                All 3 D
+              </p>
+            </foreignObject>
+            <!--2/3rds D bucket-->
+            <rect data-democratic-count="2" width="180" height="450" stroke="#8b38ff" stroke-width="5px" fill="none"
+              transform="translate(260, 50)" />
+            <foreignObject width="180" height="100" transform="translate(260, 505)">
+              <p xmlns="http://www.w3.org/1999/xhtml"
+                style="width: 180px; margin: 0; text-align: center; font-size: 20pt; line-height: 1;">
+                2 D, 1 R
+              </p>
+            </foreignObject>
+            <!--2/3rds R bucket-->
+            <rect data-democratic-count="1" width="180" height="450" stroke="#cd38ff" stroke-width="5px" fill="none"
+              transform="translate(480, 50)" />
+            <foreignObject width="180" height="100" transform="translate(480, 505)">
+              <p xmlns="http://www.w3.org/1999/xhtml"
+                style="width: 180px; margin: 0; text-align: center; font-size: 20pt; line-height: 1;">
+                1 D, 2 R
+              </p>
+            </foreignObject>
+            <!--All R bucket-->
+            <rect data-democratic-count="0" width="180" height="450" stroke="#ff3838" stroke-width="5px" fill="none"
+              transform="translate(700, 50)" />
+            <foreignObject width="180" height="100" transform="translate(700, 505)">
+              <p xmlns="http://www.w3.org/1999/xhtml"
+                style="width: 180px; margin: 0; text-align: center; font-size: 20pt; line-height: 1;">
+                All 3 R
+              </p>
+            </foreignObject>
+          </svg>
+        </div>
+      </section>
+    </div>
+  </div>
+  <!-- RevealJS scripts -->
+  <script type="module">
+    import Reveal from '../../node_modules/reveal.js/dist/reveal.esm.js';
+    import RevealHighlight from '../../node_modules/reveal.js/plugin/highlight/highlight.esm.js';
+    import RevealNotes from '../../node_modules/reveal.js/plugin/notes/notes.esm.js';
+
+    const stateRadius = 24;
+    const stateStrokeWidth = 1;
+    const collisionRadius = stateRadius + 1;
+    const bucketPadding = stateRadius + stateStrokeWidth / 2 + 2.5;
+    const arrowOffset = stateRadius + stateStrokeWidth / 2;
+
+    const controlChart = d3.select('#pre-election-control');
+    const afterSlide = controlChart.node().closest('section').cloneNode(true);
+    afterSlide.querySelector('h3').textContent = 'State Govs After the Midterms';
+    afterSlide.querySelector('svg').id = 'post-election-control';
+    controlChart.node().closest('section').after(afterSlide);
+    const afterChart = d3.select('#post-election-control');
+
+    d3.csv(`${import.meta.env.BASE_URL}assets/data/chamber-control-2026.csv`, row =>
+      Object.fromEntries(Object.entries(row).map(([key, value]) => [key.trim(), value.trim()]))
+    ).then(rows => {
+      const states = rows.flatMap(row => {
+        const countDemocrats = period => {
+          const legislature = row[`${period}-election-leg`];
+          const governor = row[`${period}-election-gov`];
+          if (legislature === 'NA' || governor === 'NA') return null;
+          if (!row.state || !['D', 'R', 'S'].includes(legislature) || !['D', 'R'].includes(governor)) {
+            throw new Error(`Invalid ${period}-election data for ${row.state || 'unknown state'}`);
+          }
+          return ({ D: 2, S: 1, R: 0 })[legislature] + (governor === 'D' ? 1 : 0);
+        };
+        const democraticCount = countDemocrats('pre');
+        if (democraticCount === null) return [];
+        return [{
+          state: row.state,
+          democraticCount,
+          postDemocraticCount: countDemocrats('post')
+        }];
+      });
+
+      const positions = new Map();
+      controlChart.selectAll('rect[data-democratic-count]').each(function () {
+        const bucket = d3.select(this);
+        const width = Number(bucket.attr('width'));
+        const height = Number(bucket.attr('height'));
+        const nodes = states.filter(state => state.democraticCount === Number(bucket.attr('data-democratic-count')));
+        const simulation = d3.forceSimulation(nodes)
+          .force('x', d3.forceX(width / 2).strength(0.08))
+          .force('y', d3.forceY(height / 2).strength(0.08))
+          .force('collide', d3.forceCollide(collisionRadius).iterations(4))
+          .stop();
+
+        for (let i = 0; i < 300; i++) {
+          simulation.tick();
+          for (const node of nodes) {
+            node.x = Math.max(bucketPadding, Math.min(width - bucketPadding, node.x));
+            node.y = Math.max(bucketPadding, Math.min(height - bucketPadding, node.y));
+          }
+        }
+
+        const transform = this.transform.baseVal.consolidate().matrix;
+        for (const node of nodes) {
+          positions.set(node.state, { x: node.x + transform.e, y: node.y + transform.f });
+        }
+
+        const marks = controlChart.append('g')
+          .attr('transform', bucket.attr('transform'))
+          .selectAll('g')
+          .data(nodes)
+          .join('g')
+          .attr('transform', node => `translate(${node.x}, ${node.y})`);
+
+        marks.append('circle')
+          .attr('r', stateRadius)
+          .attr('stroke', 'white')
+          .attr('stroke-width', stateStrokeWidth)
+          .attr('fill', 'none');
+
+        marks.append('text')
+          .attr('text-anchor', 'middle')
+          .attr('dominant-baseline', 'central')
+          .attr('fill', 'white')
+          .style('font-size', '24px')
+          .text(node => node.state);
+      });
+
+      const arrow = afterChart.append('defs').append('marker')
+        .attr('id', 'post-election-arrow')
+        .attr('viewBox', '0 0 10 10')
+        .attr('refX', 10)
+        .attr('refY', 5)
+        .attr('markerWidth', 8)
+        .attr('markerHeight', 8)
+        .attr('orient', 'auto');
+      arrow.append('path').attr('d', 'M 0 0 L 10 5 L 0 10 Z').attr('fill', 'white');
+
+      const links = afterChart.append('g').attr('class', 'change-links');
+      const originalMarks = afterChart.append('g').attr('class', 'pre-election-marks');
+      const newMarks = afterChart.append('g').attr('class', 'post-election-marks');
+      const originals = originalMarks.selectAll('g')
+        .data(states)
+        .join('g')
+        .attr('data-state', state => state.state)
+        .attr('transform', state => {
+          const position = positions.get(state.state);
+          return `translate(${position.x}, ${position.y})`;
+        });
+      originals.append('circle')
+        .attr('r', stateRadius)
+        .attr('stroke', '#999')
+        .attr('stroke-width', stateStrokeWidth)
+        .attr('fill', 'none');
+      originals.append('text')
+        .attr('text-anchor', 'middle')
+        .attr('dominant-baseline', 'central')
+        .attr('fill', '#999')
+        .style('font-size', '24px')
+        .text(state => state.state);
+
+      const moved = states.filter(state =>
+        state.postDemocraticCount !== null && state.postDemocraticCount !== state.democraticCount
+      );
+      afterChart.selectAll('rect[data-democratic-count]').each(function () {
+        const bucket = d3.select(this);
+        const width = Number(bucket.attr('width'));
+        const height = Number(bucket.attr('height'));
+        const count = Number(bucket.attr('data-democratic-count'));
+        const transform = this.transform.baseVal.consolidate().matrix;
+        const fixed = states.filter(state => state.democraticCount === count)
+          .map(state => ({ x: state.x, y: state.y, fx: state.x, fy: state.y }));
+        const arrivals = moved.filter(state => state.postDemocraticCount === count)
+          .map(state => ({ state: state.state }));
+        if (!arrivals.length) return;
+        const nodes = [...fixed, ...arrivals];
+        const simulation = d3.forceSimulation(nodes)
+          .force('x', d3.forceX(width / 2).strength(0.08))
+          .force('y', d3.forceY(height / 2).strength(0.08))
+          .force('collide', d3.forceCollide(collisionRadius).iterations(4))
+          .stop();
+
+        for (let i = 0; i < 300; i++) {
+          simulation.tick();
+          for (const node of arrivals) {
+            node.x = Math.max(bucketPadding, Math.min(width - bucketPadding, node.x));
+            node.y = Math.max(bucketPadding, Math.min(height - bucketPadding, node.y));
+          }
+        }
+
+        for (const node of arrivals) {
+          node.x += transform.e;
+          node.y += transform.f;
+        }
+
+        links.selectAll(null)
+          .data(arrivals)
+          .join('path')
+          .attr('data-state', node => node.state)
+          .attr('d', node => {
+            const start = positions.get(node.state);
+            const control = {
+              x: (start.x + node.x) / 2,
+              y: (start.y + node.y) / 2 - Math.min(100, Math.abs(node.x - start.x) * 0.2)
+            };
+            const startLength = Math.hypot(control.x - start.x, control.y - start.y);
+            const endLength = Math.hypot(node.x - control.x, node.y - control.y);
+            const x1 = start.x + arrowOffset * (control.x - start.x) / startLength;
+            const y1 = start.y + arrowOffset * (control.y - start.y) / startLength;
+            const x2 = node.x - arrowOffset * (node.x - control.x) / endLength;
+            const y2 = node.y - arrowOffset * (node.y - control.y) / endLength;
+            return `M ${x1} ${y1} Q ${control.x} ${control.y} ${x2} ${y2}`;
+          })
+          .attr('fill', 'none')
+          .attr('stroke', 'white')
+          .attr('stroke-opacity', 0.7)
+          .attr('stroke-width', 1.5)
+          .attr('marker-end', 'url(#post-election-arrow)');
+
+        const marks = newMarks
+          .selectAll(null)
+          .data(arrivals)
+          .enter().append('g')
+          .attr('data-state', node => node.state)
+          .attr('transform', node => `translate(${node.x}, ${node.y})`);
+
+        marks.append('circle')
+          .attr('r', stateRadius)
+          .attr('stroke', 'white')
+          .attr('stroke-width', stateStrokeWidth)
+          .attr('fill', 'none');
+
+        marks.append('text')
+          .attr('text-anchor', 'middle')
+          .attr('dominant-baseline', 'central')
+          .attr('fill', 'white')
+          .style('font-size', '24px')
+          .text(node => node.state);
+      });
+    }).catch(error => {
+      console.error('Unable to render election control:', error);
+      for (const chart of [controlChart, afterChart]) {
+        chart.append('text')
+          .attr('x', 450)
+          .attr('y', 30)
+          .attr('text-anchor', 'middle')
+          .attr('fill', 'white')
+          .style('font-size', '16px')
+          .text('Unable to load election control data.');
+      }
+    });
+
+    // Initialize RevealJS
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      transition: 'slide',
+      pdfSeparateFragments: false,
+      plugins: [RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>
